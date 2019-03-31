@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, StatusBar} from 'react-native';
 
 export default class Splash extends Component{
     constructor(props){
@@ -12,6 +12,7 @@ export default class Splash extends Component{
     render(){
         return (
                 <View style={styles.container}>
+                 <StatusBar hidden />
                     <Text style={styles.logotext}>JAJUS</Text>
                 </View>
         );
