@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, StatusBar, TextInput, Keyboard, CheckBox, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import cstyle from './Styles';
 
-export default class Login extends Component{
-    constructor(props) {
-        super(props)
+export default class Login extends React.Component{
+        constructor(props) {
+        super(props);
         this.state = {
             checked: false
         }
     }
     render(){
         return (
-            <SafeAreaView style = {styles.container}>
+            <SafeAreaView style = {[styles.greencontainer, {flex : 1}]}>
                 <StatusBar hidden />
                 <KeyboardAvoidingView style = {styles.container} behavior='padding'>
                     <TouchableWithoutFeedback style = {styles.container} onPress={Keyboard.dismiss}>
@@ -48,12 +49,13 @@ export default class Login extends Component{
                                         <Text style = {styles.ctext}>자동로그인</Text>
                                     </View>
                                 </View>
-                                <TouchableOpacity style = {styles.btncontainer}>
+                                <TouchableOpacity 
+                                    style = {styles.btncontainer} onPress = {() => this.props.navigation.navigate('MainScreen')}>
                                         <Text style = {styles.btntext}>Login</Text>
                                 </TouchableOpacity>
                                 <View style = {styles.bottomtext}>
                                     <TouchableOpacity><Text style = {styles.bottomleft}>id/비번찾기</Text></TouchableOpacity>
-                                    <TouchableOpacity><Text style = {styles.bottomright}>회원가입</Text></TouchableOpacity>
+                                    <TouchableOpacity><Text style = {styles.bottomright} onPress = {() => this.props.navigation.navigate('RegisterScreen')}>회원가입</Text></TouchableOpacity>
                                 </View>
                             </View>
                         </View>
