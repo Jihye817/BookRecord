@@ -11,7 +11,7 @@ export default class Login extends React.Component{
     }
     render(){
         return (
-            <SafeAreaView style = {[styles.greencontainer, {flex : 1}]}>
+            <SafeAreaView style = {[cstyle.greencontainer, {flex : 1}]}>
                 <StatusBar hidden />
                 <KeyboardAvoidingView style = {styles.container} behavior='padding'>
                     <TouchableWithoutFeedback style = {styles.container} onPress={Keyboard.dismiss}>

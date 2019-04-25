@@ -6,6 +6,10 @@ const cstyle = StyleSheet.create({
         flex: 1,
         backgroundColor: '#52C8BE'
     },
+    greenbtn: {
+        color:'#FFFFFF',
+        backgroundColor: '#52C8BE'
+    }
 })
 
 export default cstyle;
