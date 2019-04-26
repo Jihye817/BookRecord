@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, StatusBar, TextInput, Keyboard, CheckBox, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, StatusBar, TextInput, Keyboard, CheckBox, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 import cstyle from './Styles';
 
 export default class Login extends React.Component{
@@ -13,7 +13,7 @@ export default class Login extends React.Component{
         return (
             <SafeAreaView style = {[cstyle.greencontainer, {flex : 1}]}>
                 <StatusBar hidden />
-                <KeyboardAvoidingView style = {styles.container} behavior='padding'>
+                <View style = {styles.container} behavior='padding'>
                     <TouchableWithoutFeedback style = {styles.container} onPress={Keyboard.dismiss}>
                         <View style = {styles.container}>
                             <View style = {styles.logowrap}>
@@ -61,7 +61,7 @@ export default class Login extends React.Component{
                         </View>
                     </TouchableWithoutFeedback>
                     
-                </KeyboardAvoidingView>
+                </View>
             </SafeAreaView>
         );
     }
