@@ -90,7 +90,7 @@ export default class Mainpage extends React.Component{
                     <TextInput style = {styles.inputfull}/>
                   </View>
                 </View>
-                <TouchableOpacity style = {styles.btncontainer}>
+                <TouchableOpacity style = {styles.btncontainer} onPress = {() => this.props.navigation.navigate('RegisterfinScreen')}>
                   <Text style = {styles.btntext}>회원가입</Text>
                 </TouchableOpacity>
               </View>

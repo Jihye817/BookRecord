@@ -11,6 +11,8 @@ import {createStackNavigator, createAppContainer, createSwitchNavigator} from 'r
 import Login from './Login';
 import Mainpage from './Mainpage';
 import Registerpage from './Register';
+import Registerfinpage from './Registerfin';
+import Found from './Found';
 
 const Navigation = createStackNavigator({
   LoginScreen : {screen : Login,
@@ -21,7 +23,13 @@ const Navigation = createStackNavigator({
   },
   RegisterScreen : {screen : Registerpage,
     navigationOptions:{header : null},
-  }
+  },
+  RegisterfinScreen : {screen : Registerfinpage,
+    navigationOptions:{header : null},
+  },
+  FoundScreen : {screen : Found,
+    navigationOptions:{header : null},
+  },
 },{
   initialRouteName: 'LoginScreen'
 });

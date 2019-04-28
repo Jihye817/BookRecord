@@ -54,7 +54,7 @@ export default class Login extends React.Component{
                                         <Text style = {styles.btntext}>Login</Text>
                                 </TouchableOpacity>
                                 <View style = {styles.bottomtext}>
-                                    <TouchableOpacity><Text style = {styles.bottomleft}>id/비번찾기</Text></TouchableOpacity>
+                                    <TouchableOpacity><Text style = {styles.bottomleft} onPress = {() => this.props.navigation.navigate('FoundScreen')}>id/비번찾기</Text></TouchableOpacity>
                                     <TouchableOpacity><Text style = {styles.bottomright} onPress = {() => this.props.navigation.navigate('RegisterScreen')}>회원가입</Text></TouchableOpacity>
                                 </View>
                             </View>
