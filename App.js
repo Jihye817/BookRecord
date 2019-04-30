@@ -7,20 +7,23 @@
  */
 
 import React from 'react';
-import {createStackNavigator, createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator} from 'react-navigation';
 import Login from './Login';
 import Mainpage from './Mainpage';
 import Registerpage from './Register';
 import Registerfinpage from './Registerfin';
 import Found from './Found';
+import Mypage from './Mypage';
 
-const Navigation = createStackNavigator({
+const MyStackNavigator = createStackNavigator({
   LoginScreen : {screen : Login,
     navigationOptions:{header : null},
   },
-  MainScreen : {screen : Mainpage,
-    navigationOptions:{title : 'MAIN'},
-  },
+  /*MainScreen : {screen : Mainpage,
+    navigationOptions:{
+      header : null
+    },
+  },*/
   RegisterScreen : {screen : Registerpage,
     navigationOptions:{header : null},
   },
@@ -30,10 +33,32 @@ const Navigation = createStackNavigator({
   FoundScreen : {screen : Found,
     navigationOptions:{header : null},
   },
-},{
-  initialRouteName: 'LoginScreen'
-});
+},{initialRouteName:'LoginScreen',headerMode : 'none'},
+);
 
-const App = createAppContainer(Navigation);
+const Mainstack = createStackNavigator({
+  MainScreen : {screen : Mainpage,
+    navigationOptions:{
+      header : null
+    },
+  },
+},{headerMode : 'none'});
 
-export default App;
+const MyDrawerNavigator = createDrawerNavigator({
+  Mainpage:Mainstack,
+  MyScreen : {screen: Mypage,
+    navigationOptions:{
+      header : null
+    },
+  },
+},{headerMode : 'none'});
+
+const TotalNavigator = createSwitchNavigator({
+  loginstack: {screen : MyStackNavigator},
+  drawerstack: {screen: MyDrawerNavigator},
+  
+},{initialRouteName: 'loginstack', headerMode: 'none'});
+
+Nav = createAppContainer(TotalNavigator);
+
+export default Nav;
