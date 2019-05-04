@@ -9,6 +9,9 @@ const cstyle = StyleSheet.create({
     greenbtn: {
         color:'#FFFFFF',
         backgroundColor: '#52C8BE'
+    },
+    whitecontianer: {
+        flex: 1,
     }
 })
 

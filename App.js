@@ -19,11 +19,6 @@ const MyStackNavigator = createStackNavigator({
   LoginScreen : {screen : Login,
     navigationOptions:{header : null},
   },
-  /*MainScreen : {screen : Mainpage,
-    navigationOptions:{
-      header : null
-    },
-  },*/
   RegisterScreen : {screen : Registerpage,
     navigationOptions:{header : null},
   },
