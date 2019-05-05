@@ -5,7 +5,7 @@ export default class Mybooks extends React.Component{
     render() {
         return(
             <View>
-                <Text>mybooks</Text>
+                <Text>내책장</Text>
             </View>
         );
     }
