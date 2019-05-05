@@ -5,7 +5,7 @@ export default class Bookrecom extends React.Component{
     render() {
         return(
             <View>
-                <Text>내책장</Text>
+                <Text>추천도서</Text>
             </View>
         );
     }

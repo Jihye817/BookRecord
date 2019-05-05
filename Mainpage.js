@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, StatusBar, Animated, TouchableOpacity, TouchableWithoutFeedback, AppRegistry} from 'react-native';
-import {DrawerActions, createMaterialTopTabNavigator} from 'react-navigation';
+import {DrawerActions, createAppContainer} from 'react-navigation';
 import {Header} from 'react-native-elements';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import cstyle from './Styles';
+import MyTabNavigator from './Router';
 
 export default class Mainpage extends React.Component{
   state = {
@@ -69,6 +70,8 @@ export default class Mainpage extends React.Component{
           }]
         }
 
+        const AppIndex = createAppContainer(MyTabNavigator)
+
         return (
           <View style={cstyle.whitecontianer}>
           <Header
@@ -77,6 +80,7 @@ export default class Mainpage extends React.Component{
             centerComponent={{text: 'Mainpage', style:{color:'#FFF'}}}
             containerStyle={{backgroundColor:'#52C8BE', height:45, paddingTop:0}}
             />
+            <AppIndex></AppIndex>
             <Animated.View style = {[styles.background, bgStyle]}/>
             <TouchableWithoutFeedback>
               <Animated.View style={[styles.btn, styles.other, orderStyle]}>
@@ -104,7 +108,7 @@ export default class Mainpage extends React.Component{
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#AAA',
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
     position: 'absolute',
     width: 60,
     height: 60,
