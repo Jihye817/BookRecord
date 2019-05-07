@@ -73,7 +73,7 @@ export default class Mainpage extends React.Component{
         const AppIndex = createAppContainer(MyTabNavigator)
 
         return (
-          <View style={cstyle.whitecontianer}>
+          <View style={cstyle.whitecontainer}>
           <Header
             statusBarProps={{ barStyle: 'light-content'}}
             leftComponent={{icon:'menu', color:'#FFF', onPress: () => this.props.navigation.dispatch(DrawerActions.openDrawer())}}

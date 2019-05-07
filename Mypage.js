@@ -9,7 +9,7 @@ export default class Mypage extends React.Component{
             <Header
             leftComponent={{icon:'menu', color:'#FFF', onPress: () => this.props.navigation.dispatch(DrawerActions.openDrawer())}}
             centerComponent={{text: 'Mypage', style:{color:'#FFF'}}}
-            containerStyle={{backgroundColor:'#52C8BE'}}
+            containerStyle={{backgroundColor:'#52C8BE', height:45, paddingTop:0}}
             />
         );
       }

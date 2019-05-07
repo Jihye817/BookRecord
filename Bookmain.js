@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
 
 export default class Bookmain extends React.Component{
     render() {
         return(
-            <View style = {cstyle.whitecontianer}>
-            <View style = {styles.middlecontainer}/>
+            <View style = {cstyle.whitecontainer}>
+                <View style = {cstyle.middlecontainer}/>
                 <View style = {styles.firstcontainer}>
                     <View style = {styles.greybox}>
                         <Text style = {styles.greytext}>3월</Text>
@@ -47,29 +47,29 @@ export default class Bookmain extends React.Component{
                     </View>
                 </View>
 
-                <View style = {styles.middlecontainer}/>
+                <View style = {cstyle.middlecontainer}/>
 
                 <View style = {styles.secondcontainer}>
                     <View style = {styles.topbox}>
                         <View style = {styles.leftbox}>
                             <Text style = {styles.leftgreytext}>하루한권 추천도서</Text>
                         </View>
-                        <View style = {styles.rightbox}>
+                        <TouchableOpacity style = {styles.rightbox}>
                             <Text style = {styles.greentext}>추천도서 더보기 ▶</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style = {styles.lowbox}>
                         <View style = {styles.imagebox}>
-
+                            <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
                         </View>
                         <View style = {styles.infobox}>
-                            <Text>i에게</Text>
+                            <Text style = {styles.title}>i에게</Text>
                             <View style = {styles.infotexts}>
                                 <Text>김소연</Text>
                                 <Text> | </Text>
                                 <Text>아침달 시집</Text>
                             </View>
-                            <Text>2018-09-10</Text>
+                            <Text style = {styles.date}>2018-09-10</Text>
                             <TouchableOpacity>
                                 <Text>+ 자세히보기</Text>
                             </TouchableOpacity>
@@ -82,13 +82,6 @@ export default class Bookmain extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    middlecontainer: {
-        height: 5,
-        borderBottomWidth: 1,
-        borderTopWidth: 1,
-        backgroundColor: '#F2F2F2',
-        borderColor:'#DDD',
-    },
     firstcontainer: {
         backgroundColor: '#FFF',
         flex : 1,
@@ -165,7 +158,6 @@ const styles = StyleSheet.create({
     topbox: {
         flex: 1,
         width: '90%',
-        backgroundColor: '#f09',
         flexDirection: 'row',
         justifyContent:'space-between',
         alignItems: 'center',
@@ -187,7 +179,6 @@ const styles = StyleSheet.create({
     },
     rightbox: {
         alignItems: 'center',
-        backgroundColor: '#F2F2F2',
         textAlign: 'right'
     },
     greentext: {
@@ -196,19 +187,31 @@ const styles = StyleSheet.create({
     lowbox: {
         flex: 5,
         width:'90%',
-        backgroundColor: '#90F',
         flexDirection: 'row',
     },
     imagebox: {
-        width: '50%',
-        backgroundColor: '#DDD'
+        width: '45%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    image:{
+        width:'60%',
+        resizeMode: 'contain',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     infobox: {
-        width: '50%',
-        backgroundColor: '#50F'
-
+        width: '55%',
+        justifyContent: 'center',
     },
     infotexts: {
         flexDirection: 'row',
+    },
+    title: {
+        fontSize : 20,
+        paddingBottom: 10,
+    },
+    date: {
+        paddingBottom: 10,
     },
 })

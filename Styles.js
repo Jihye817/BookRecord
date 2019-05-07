@@ -10,9 +10,16 @@ const cstyle = StyleSheet.create({
         color:'#FFFFFF',
         backgroundColor: '#52C8BE'
     },
-    whitecontianer: {
+    whitecontainer: {
         flex: 1,
-    }
+    },
+    middlecontainer: {
+        height: 5,
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
+        backgroundColor: '#F2F2F2',
+        borderColor:'#DDD',
+    },
 })
 
 export default cstyle;
