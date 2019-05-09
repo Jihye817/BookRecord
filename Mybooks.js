@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image, Picker} from 'react-native';
+import {Select, Option} from 'react-native-chooser';
 import cstyle from './Styles';
 
 export default class Mybooks extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          active:true,
-          pickerSelect: '년도',
-          checked: false
+            value : '년도 ',
+            value2: '분류',
+            value3: '상태'
         }
-      }
+    }
+
+    onSelect(value, label) {
+        this.setState({value : value})
+    }
+    onSelect2(value, label) {
+        this.setState({value : value})
+    }
+    onSelect3(value, label) {
+        this.setState({value : value})
+    }
 
     render() {
         return(
@@ -18,13 +29,36 @@ export default class Mybooks extends React.Component{
                 <View style = {cstyle.middlecontainer}/>
                 <View style = {styles.firstcontainer}>
                     <View style = {styles.greybox}>
-                        <View style = {styles.pickerstyle}>
-                        </View>
-                        
-                        <View style = {styles.pickerstyle}>
+                        <View style = {styles.pickerstyle1}>
+                        <Select onSelect = {this.onSelect.bind(this)}
+                            defaultText = {this.state.value}
+                            style = {styles.pickerstyle}
+                            //indicator = "down"
+                            //indicatorColor="#52C8B2"
+                            optionListStyle = {styles.pickeroptionstyle}>
+                            <Option value = "2019 ">2019</Option>
+                            <Option value = "2018 ">2018</Option>
+                        </Select>
                         </View>
 
-                        <View style = {styles.pickerstyle}>
+                        <View style = {styles.pickerstyle1}>
+                        <Select onSelect2 = {this.onSelect2.bind(this)}
+                            defaultText = {this.state.value2}
+                            style = {styles.pickerstyle}
+                            optionListStyle = {styles.pickeroptionstyle}>
+                            <Option value = "소설">소설</Option>
+                            <Option value = "수필">수필</Option>
+                        </Select>
+                        </View>
+
+                        <View style = {styles.pickerstyle1}>
+                        <Select onSelect3 = {this.onSelect3.bind(this)}
+                            defaultText = {this.state.value3}
+                            style = {styles.pickerstyle}
+                            optionListStyle = {styles.pickeroptionstyle}>
+                            <Option value = "읽는중">읽는중</Option>
+                            <Option value = "완독">완독</Option>
+                        </Select>
                         </View>
 
                         <TouchableOpacity style = {styles.greenbtn}>
@@ -58,13 +92,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
     },
-    pickerstyle: {
+    pickerstyle1: {
         height: 30,
         width: '20%',
         backgroundColor: '#FFF',
-        color: '#52C8BE',
+        color:'#333',
         borderWidth:1,
-        borderColor: '#52C8BE'
+        borderColor:'#52C8B2',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pickerstyle: {
+        height: 30,
+        width:'100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 0,
+    },
+    pickeroptionstyle: {
+        borderColor: '#52C8B2',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     greenbtn: {
         height: 30,
