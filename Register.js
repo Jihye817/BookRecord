@@ -6,13 +6,13 @@ export default class Mainpage extends React.Component{
   
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { //연령 셀렉트박스를 위한 것
       active:true,
       pickerSelect: '연령',
       checked: false
     }
   }
-  handleToggle(){
+  handleToggle(){ //여성/남성 체크 위한 것. 나중에 수정 가능성 있음
     const newState = !this.state.active;
     this.setState({active:newState});
   }

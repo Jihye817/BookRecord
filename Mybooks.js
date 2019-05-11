@@ -13,13 +13,13 @@ export default class Mybooks extends React.Component{
         }
     }
 
-    onSelect(value, label) {
+    onSelect(value, label) { //년도 select를 위한 함수
         this.setState({value : value})
     }
-    onSelect2(value, label) {
+    onSelect2(value, label) { //분류 select를 위한 함수
         this.setState({value : value})
     }
-    onSelect3(value, label) {
+    onSelect3(value, label) { //상태 select를 위한 함수
         this.setState({value : value})
     }
 
@@ -62,7 +62,7 @@ export default class Mybooks extends React.Component{
                         </View>
 
                         <TouchableOpacity style = {styles.greenbtn}>
-                            <Text>검색</Text>
+                            <Text style = {{color:'#FFF'}}>검색</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

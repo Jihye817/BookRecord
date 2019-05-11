@@ -15,7 +15,7 @@ import Registerfinpage from './Registerfin';
 import Found from './Found';
 import Mypage from './Mypage';
 
-const MyStackNavigator = createStackNavigator({
+const MyStackNavigator = createStackNavigator({ //로그인 부분 페이지 이동 네비게이터
   LoginScreen : {screen : Login,
     navigationOptions:{header : null},
   },
@@ -31,7 +31,7 @@ const MyStackNavigator = createStackNavigator({
 },{initialRouteName:'LoginScreen',headerMode : 'none'},
 );
 
-const Mainstack = createStackNavigator({
+const Mainstack = createStackNavigator({ // 메인페이지 네비게이터
   MainScreen : {screen : Mainpage,
     navigationOptions:{
       header : null
@@ -39,7 +39,7 @@ const Mainstack = createStackNavigator({
   },
 },{headerMode : 'none'});
 
-const MyDrawerNavigator = createDrawerNavigator({
+const MyDrawerNavigator = createDrawerNavigator({ //옆에 나오는 메뉴를 위한 네비게이터
   Mainpage:Mainstack,
   MyScreen : {screen: Mypage,
     navigationOptions:{
@@ -48,7 +48,7 @@ const MyDrawerNavigator = createDrawerNavigator({
   },
 },{headerMode : 'none'});
 
-const TotalNavigator = createSwitchNavigator({
+const TotalNavigator = createSwitchNavigator({ //최상위 네비게이터
   loginstack: {screen : MyStackNavigator},
   drawerstack: {screen: MyDrawerNavigator},
   

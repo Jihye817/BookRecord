@@ -5,7 +5,7 @@ import Mybooks from './Mybooks';
 import Bookstat from './Bookstat';
 import Bookrecom from './Bookrecom';
 
-const MyTabNavigator = createMaterialTopTabNavigator({
+const MyTabNavigator = createMaterialTopTabNavigator({ //탭 메뉴를 위한 네비게이터
     BookmainScreen : {screen: Bookmain,
         navigationOptions : {title : '홈'}},
     MybooksScreen : {screen: Mybooks,

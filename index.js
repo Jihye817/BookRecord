@@ -16,7 +16,7 @@ class Index extends Component{
             this.setState({currentScreen:'Login'})
         }, 2000)
     }
-    render(){
+    render(){ //splash 화면을 위한 코드. 현재 screen을 확인하여 splash를 띄운다
         const {currentScreen} = this.state
         let mainScreen = currentScreen === 'Splash' ? <Splash /> : <App />
         return mainScreen
