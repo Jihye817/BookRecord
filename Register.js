@@ -3,10 +3,7 @@ import {View, Text, StyleSheet, SafeAreaView, StatusBar, Picker, TextInput, Chec
 import cstyle from './Styles';
 //test branch commit test
 export default class Mainpage extends React.Component{
-  //state={
-  //  active:true,
-  //  pickerSelect: '연령'
-  //}
+  
   constructor(props) {
     super(props);
     this.state = {
