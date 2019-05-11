@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, StatusBar, Picker, TextInput, CheckBox, TouchableOpacity} from 'react-native';
 import cstyle from './Styles';
-//test branch commit test
+//another test
 export default class Mainpage extends React.Component{
   
   constructor(props) {
