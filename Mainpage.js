@@ -7,10 +7,10 @@ import cstyle from './Styles';
 import MyTabNavigator from './Router';
 
 export default class Mainpage extends React.Component{
-  state = {
+  state = { //floating button의 애니메이션
     animation: new Animated.Value(0)
   }
-  toggleOpen = () => {
+  toggleOpen = () => { //floating button을 클릭 시 이루어지는 행동
     const toValue = this._open ? 0 : 1;
 
     Animated.timing(this.state.animation, {
@@ -31,7 +31,7 @@ export default class Mainpage extends React.Component{
           }]
         }
 
-        const reloadStyle = {
+        const reloadStyle = { //isbn코드 버튼. 이름 수정 요망
           transform: [{
             scale: this.state.animation
           },{
@@ -42,7 +42,7 @@ export default class Mainpage extends React.Component{
           }]
         }
 
-        const orderStyle = {
+        const orderStyle = { //바코드 버튼. 이름 수정 요망
           transform: [{
             scale: this.state.animation
           },{
@@ -53,7 +53,7 @@ export default class Mainpage extends React.Component{
           }]
         }
         
-        const lablePositionInterpolate = this.state.animation.interpolate({
+        const lablePositionInterpolate = this.state.animation.interpolate({ //옆의 텍스트 위치 설정
           inputRange: [0, 1],
           outputRange: [0, -80]
         });
