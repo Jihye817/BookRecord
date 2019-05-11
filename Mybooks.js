@@ -33,8 +33,6 @@ export default class Mybooks extends React.Component{
                         <Select onSelect = {this.onSelect.bind(this)}
                             defaultText = {this.state.value}
                             style = {styles.pickerstyle}
-                            //indicator = "down"
-                            //indicatorColor="#52C8B2"
                             optionListStyle = {styles.pickeroptionstyle}>
                             <Option value = "2019 ">2019</Option>
                             <Option value = "2018 ">2018</Option>
@@ -67,9 +65,25 @@ export default class Mybooks extends React.Component{
                     </View>
                 </View>
                 <View style = {styles.secondcontainer}>
-                    <View style = {styles.greybox}>
-                        <Text>book information goes here</Text>
-                    </View>
+                    <TouchableOpacity style = {styles.greybox2}>
+                        <View style = {styles.bookinfobox}>
+                            <TouchableOpacity style = {styles.read}>
+                                <Text style = {{color:'#FFF'}}>완독</Text>
+                            </TouchableOpacity>
+                            <View style = {styles.infodate}>
+                                <Text>3/22</Text>
+                            </View>
+                            
+                            <View style = {styles.infoimage}>
+                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                            </View>
+                            
+                            <View style = {styles.infotext}>
+                                <Text style = {styles.textitle}>i에게</Text>
+                                <Text style = {styles.textinfos}>김소연 | 아침달 시집 | 2018-09-10</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -77,6 +91,16 @@ export default class Mybooks extends React.Component{
 }
 
 const styles = StyleSheet.create({
+    read:{
+        position: 'absolute',
+        width:45,
+        height:24,
+        right:10,
+        top: 10,
+        backgroundColor:'#52C8B2',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     firstcontainer: {
         backgroundColor: '#FFF',
         flex : 1,
@@ -124,8 +148,47 @@ const styles = StyleSheet.create({
     secondcontainer: {
         backgroundColor: '#FFF',
         flex: 7,
+        paddingVertical: 20,
+        alignItems: 'center',
+    },
+    greybox2: {
+        backgroundColor: '#F2F2F2',
+        width: '90%',
+    },
+    bookinfobox: {
+        height:110,
+        flexDirection: 'row',
+        width:'100%',
+        borderBottomWidth: 1,
+        borderColor:'#DDD',
+    },
+    infodate: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 20,
+        width:'14%',
+    },
+    infoimage: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:'20%',
+    },
+    image: {
+        width:'80%',
+        resizeMode: 'contain',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    infotext: {
+        justifyContent: 'center',
+        width:'66%',
+    },
+    textitle: {
+        paddingLeft: 10,
+        fontSize: 16,
+        paddingBottom:4,
+    },
+    textinfos: {
+        paddingLeft: 10,
+        color:'#B2B2B2'
     },
 })
