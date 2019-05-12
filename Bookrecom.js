@@ -1,15 +1,45 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image,ImageBackground} from 'react-native';
+import {Select, Option} from 'react-native-chooser';
 import cstyle from './Styles';
 
 export default class Bookrecom extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            value : '분류',
+        }
+    }
+
+    onSelect(value, label) { //년도 select를 위한 함수
+        this.setState({value : value})
+    }
+
     render() {
         return(
             <View style = {cstyle.whitecontainer}>
                 <View style = {cstyle.middlecontainer}/>
                 <View style = {styles.firstcontainer}>
                     <View style = {styles.greenbox}>
-                        <Text>selectbox goes here</Text>
+                        <View style = {styles.textbox}>
+                            <Text style = {{color: '#FFF', fontSize: 16,}}>오늘의</Text>
+                        </View>
+
+                        <View style = {styles.textbox}>
+                            <Select onSelect = {this.onSelect.bind(this)}
+                                defaultText = {this.state.value}
+                                style = {styles.pickerstyle}
+                                optionListStyle = {styles.pickeroptionstyle}>
+                                <Option value = "시 / 에세이">시 / 에세이</Option>
+                                <Option value = "소설">소설</Option>
+                                <Option value = "수필">수필</Option>
+                            </Select>
+                        </View>
+
+                        <View style = {styles.textbox}>
+                            <Text style = {{color: '#FFF', fontSize: 16,}}>추천</Text>
+                        </View>
+
                     </View>
                 </View>
                 <View style = {styles.secondcontainer}>
@@ -37,7 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#52C8B2',
         width: '90%',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         flex: 1,
     },
@@ -62,5 +92,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+    },
+    textbox: {
+        width: '25%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pickerstyle: {
+        height: 30,
+        width:'100%',
+        backgroundColor: '#FFF',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 0,
+    },
+    pickeroptionstyle: {
+        borderColor: '#52C8B2',
+        backgroundColor: '#FFF',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 })
