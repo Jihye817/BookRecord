@@ -42,12 +42,41 @@ export default class Bookrecom extends React.Component{
 
                     </View>
                 </View>
+
                 <View style = {styles.secondcontainer}>
-                    <Text>selected info goes here</Text>
+                    <View style = {styles.whitebox}>
+                        <Text style = {{color: '#52C8B2', fontSize: 24,}}>{this.state.value}</Text>
+                        <Text>추천작</Text>
+                    </View>
                 </View>
+
                 <View style = {styles.thirdcontainer}>
                     <View style = {styles.greybox}>
-                        <Text>book info goes here</Text>
+                        <View style = {styles.boxline}>
+                            <View style = {styles.recoms}>
+                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                                <Text style = {styles.booktitle}>i에게</Text>
+                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                            </View>
+                            <View style = {styles.recoms}>
+                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                                <Text style = {styles.booktitle}>i에게</Text>
+                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                            </View>
+                        </View>
+                        
+                        <View style = {styles.boxline}>
+                            <View style = {styles.recoms}>
+                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                                <Text style = {styles.booktitle}>i에게</Text>
+                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                            </View>
+                            <View style = {styles.recoms}>
+                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                                <Text style = {styles.booktitle}>i에게</Text>
+                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -58,7 +87,7 @@ export default class Bookrecom extends React.Component{
 const styles = StyleSheet.create({
     firstcontainer: {
         backgroundColor: '#FFF',
-        flex : 1,
+        flex : 0.8,
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 20,
@@ -73,10 +102,10 @@ const styles = StyleSheet.create({
     },
     secondcontainer: {
         backgroundColor: '#FFF',
-        flex: 1,
+        flex: 0.6,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 20,
+        paddingVertical: 10,
     },
     thirdcontainer: {
         backgroundColor: '#FFF',
@@ -88,9 +117,6 @@ const styles = StyleSheet.create({
     greybox: {
         backgroundColor: '#F2F2F2',
         width: '90%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         flex: 1,
     },
     textbox: {
@@ -111,5 +137,37 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    whitebox: {
+        width: '50%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flex: 1,
+    },
+    boxline: {
+        height: '50%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    recoms: {
+        width: '40%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    image: {
+        height:120,
+        resizeMode: 'contain',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    booktitle: {
+        paddingTop:5,
+        fontSize: 16,
+    },
+    bookinfo: {
+        fontSize: 14,
+        color:'#B2B2B2'
     },
 })
