@@ -65,7 +65,7 @@ export default class Mybooks extends React.Component{
                     </View>
                 </View>
                 <View style = {styles.secondcontainer}>
-                    <TouchableOpacity style = {styles.greybox2}>
+                    <TouchableOpacity style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
                         <View style = {styles.bookinfobox}>
                             <TouchableOpacity style = {styles.read}>
                                 <Text style = {{color:'#FFF'}}>완독</Text>
