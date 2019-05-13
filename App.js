@@ -16,6 +16,7 @@ import Found from './Found';
 import Mypage from './Mypage';
 import Barcodesearch from './Barcodesearch';
 import Isbnsearch from './Isbnsearch';
+import Mybookinfo from './Mybookinfo';
 
 const MyStackNavigator = createStackNavigator({ //로그인 부분 페이지 이동 네비게이터
   LoginScreen : {screen : Login,
