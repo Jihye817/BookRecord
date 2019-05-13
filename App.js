@@ -14,6 +14,8 @@ import Registerpage from './Register';
 import Registerfinpage from './Registerfin';
 import Found from './Found';
 import Mypage from './Mypage';
+import Barcodesearch from './Barcodesearch';
+import Isbnsearch from './Isbnsearch';
 
 const MyStackNavigator = createStackNavigator({ //로그인 부분 페이지 이동 네비게이터
   LoginScreen : {screen : Login,
@@ -37,6 +39,8 @@ const Mainstack = createStackNavigator({ // 메인페이지 네비게이터
       header : null
     },
   },
+  BarcodeScreen : {screen : Barcodesearch,},
+  IsbnScreen : {screen : Isbnsearch},
 },{headerMode : 'none'});
 
 const MyDrawerNavigator = createDrawerNavigator({ //옆에 나오는 메뉴를 위한 네비게이터

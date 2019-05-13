@@ -20,6 +20,10 @@ const cstyle = StyleSheet.create({
         backgroundColor: '#F2F2F2',
         borderColor:'#DDD',
     },
+    greycontainer: {
+        flex: 1,
+        backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    },
 })
 
 export default cstyle;

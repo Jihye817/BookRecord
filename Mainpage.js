@@ -85,14 +85,14 @@ export default class Mainpage extends React.Component{
             <TouchableWithoutFeedback>
               <Animated.View style={[styles.btn, styles.other, orderStyle]}>
                 <Animated.Text style={[styles.lable, lableStyle]}>ISBN</Animated.Text>
-                <IonIcon name='ios-search' size={30} color='#555' />
+                <IonIcon onPress = {() => this.props.navigation.navigate('IsbnScreen')} name='ios-search' size={30} color='#555' />
               </Animated.View>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback>
               <Animated.View style={[styles.btn, styles.other, reloadStyle]}>
                 <Animated.Text style={[styles.lable, lableStyle]}>바코드</Animated.Text>
-                <IonIcon name='ios-barcode' size={30} color='#555' />
+                <IonIcon onPress = {() => this.props.navigation.navigate('BarcodeScreen')} name='ios-barcode' size={30} color='#555' />
               </Animated.View>
             </TouchableWithoutFeedback>
 
