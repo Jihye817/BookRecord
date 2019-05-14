@@ -17,6 +17,9 @@ import Mypage from './Mypage';
 import Barcodesearch from './Barcodesearch';
 import Isbnsearch from './Isbnsearch';
 import Mybookinfo from './Mybookinfo';
+import Mypagechange from './Mypagechange';
+import Leave from './Leave';
+import Goal from './Goal';
 
 const MyStackNavigator = createStackNavigator({ //로그인 부분 페이지 이동 네비게이터
   LoginScreen : {screen : Login,
@@ -44,13 +47,16 @@ const Mainstack = createStackNavigator({ // 메인페이지 네비게이터
   IsbnScreen : {screen : Isbnsearch},
 },{headerMode : 'none'});
 
+const Mypagestack = createStackNavigator({
+  MypageScreen : {screen : Mypage},
+  MypagechangeScreen : {screen : Mypagechange},
+  LeaveScreen : {screen : Leave},
+},{headerMode : 'none'});
+
 const MyDrawerNavigator = createDrawerNavigator({ //옆에 나오는 메뉴를 위한 네비게이터
-  Mainpage:Mainstack,
-  MyScreen : {screen: Mypage,
-    navigationOptions:{
-      header : null
-    },
-  },
+  Mainpage : Mainstack,
+  MyScreen : Mypagestack,
+  GoalScreen : {screen : Goal}
 },{headerMode : 'none'});
 
 const TotalNavigator = createSwitchNavigator({ //최상위 네비게이터
