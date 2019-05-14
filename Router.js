@@ -5,6 +5,8 @@ import Mybooks from './Mybooks';
 import Bookstat from './Bookstat';
 import Bookrecom from './Bookrecom';
 import Mybookinfo from './Mybookinfo';
+import Mystat from './Mystat';
+import Peoplestat from './Peoplestat';
 
 const MyTabNavigator = createMaterialTopTabNavigator({ //탭 메뉴를 위한 네비게이터
     BookmainScreen : {screen: Bookmain,
@@ -32,7 +34,20 @@ const MyStackNav = createStackNavigator({
             header : null
         },
     },
-});
+},{headerMode: 'none'});
+
+const MySwitchNav = createSwitchNavigator({
+    MystatScreen : {screen : Mystat,
+        navigationOptions:{
+            header : null
+        },
+    },
+    PeoplestatScreen : {screen : Peoplestat,
+        navigationOptions:{
+            header : null
+        },
+    },
+},{headerMode : 'none'});
 
 const TotalNav = createStackNavigator({
     TabStack: {screen : MyTabNavigator,
@@ -45,7 +60,12 @@ const TotalNav = createStackNavigator({
             header : null
         },
     },
-});
+    SwitchStack: {screen : MySwitchNav,
+        navigationOptions:{
+            header : null
+        },
+    },
+},{headerMode: 'none'});
 
 Navs = createAppContainer(TotalNav);
 export default Navs;
