@@ -4,6 +4,7 @@ import cstyle from './Styles';
 import Pie from 'react-native-pie';
 
 export default class Bookmain extends React.Component{
+    
     render() {
         return(
             <View style = {cstyle.whitecontainer}>

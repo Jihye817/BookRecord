@@ -2,8 +2,15 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import cstyle from './Styles';
 import {Header} from 'react-native-elements';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 export default class Setting extends React.Component{
+    static navigationOptions = {
+        drawerIcon:(
+            <IonIcon name='md-settings' size={24} color = '#52C8B2'/>
+        )
+    }
+
     render() {
         return (
             <View style = {cstyle.whitecontainer}>

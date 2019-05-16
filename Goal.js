@@ -4,6 +4,7 @@ import {Select, Option} from 'react-native-chooser';
 import {DrawerActions} from 'react-navigation';
 import cstyle from './Styles';
 import {Header} from 'react-native-elements';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 export default class Goal extends React.Component{
     constructor(props) {
@@ -15,6 +16,12 @@ export default class Goal extends React.Component{
 
     onSelect(value, label) { //목표권수 select를 위한 함수
         this.setState({value : value})
+    }
+
+    static navigationOptions = {
+        drawerIcon:(
+            <IonIcon name='md-flag' size={24} color = '#52C8B2'/>
+        )
     }
 
     render() {
