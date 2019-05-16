@@ -18,7 +18,6 @@ import Found from './Found';
 import Mypage from './Mypage';
 import Barcodesearch from './Barcodesearch';
 import Isbnsearch from './Isbnsearch';
-import Mybookinfo from './Mybookinfo';
 import Mypagechange from './Mypagechange';
 import Leave from './Leave';
 import Goal from './Goal';
@@ -40,6 +39,11 @@ const MyStackNavigator = createStackNavigator({ //로그인 부분 페이지 이
 },{initialRouteName:'LoginScreen',headerMode : 'none'},
 );
 
+//const Myisbnstack = createStackNavigator({
+//  IsbnScreen : {screen : Isbnsearch},
+//  PopScreen : {screen : Popbookadd},
+//},{headerMode : 'none'});
+
 const Mainstack = createStackNavigator({ // 메인페이지 네비게이터
   MainScreen : {screen : Mainpage,
     navigationOptions:{
@@ -47,6 +51,7 @@ const Mainstack = createStackNavigator({ // 메인페이지 네비게이터
     },
   },
   BarcodeScreen : {screen : Barcodesearch,},
+  //IsbnStack : {screen : Myisbnstack},
   IsbnScreen : {screen : Isbnsearch},
 },{headerMode : 'none'});
 
