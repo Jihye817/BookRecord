@@ -20,6 +20,7 @@ import Mybookinfo from './Mybookinfo';
 import Mypagechange from './Mypagechange';
 import Leave from './Leave';
 import Goal from './Goal';
+import Setting from './Setting';
 
 const MyStackNavigator = createStackNavigator({ //로그인 부분 페이지 이동 네비게이터
   LoginScreen : {screen : Login,
@@ -56,7 +57,8 @@ const Mypagestack = createStackNavigator({
 const MyDrawerNavigator = createDrawerNavigator({ //옆에 나오는 메뉴를 위한 네비게이터
   Mainpage : Mainstack,
   MyScreen : Mypagestack,
-  GoalScreen : {screen : Goal}
+  GoalScreen : {screen : Goal},
+  SettingScreen : {screen : Setting},
 },{headerMode : 'none'});
 
 const TotalNavigator = createSwitchNavigator({ //최상위 네비게이터
