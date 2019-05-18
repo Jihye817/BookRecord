@@ -3,6 +3,32 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Select, Option} from 'react-native-chooser';
 import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import LineChart from 'react-native-responsive-linechart';
+
+const data = [1, 5, 2, 3, 0, 6, 9, 5, 2, 3, 0, 6];
+const labels = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+const config = {
+    line: {
+        visible: true,
+        strokeWidth: 2,
+        strokeColor: '#FFBB00'
+    },
+    area: {
+        visible: false
+    },
+    yAxis: {
+        visible: true,
+        labelFormatter: v => String(v)
+    },
+    xAxis: {
+        visible: true,
+    },
+    grid: {
+        stepSize: 1,
+    },
+    insetY: 10,
+    insetX: 10
+};
 
 export default class Peoplestat extends React.Component{
     constructor(props) {
@@ -37,7 +63,9 @@ export default class Peoplestat extends React.Component{
                     </View>
 
                     <View style = {styles.graphcontainer}>
-                        <View style = {styles.graphbox}></View>
+                        <View style = {styles.graphbox}>
+                            <LineChart style={{width:'95%', height:180}} xLabels={labels} config={config} data={data} />
+                        </View>
                     </View>
 
                     <View style = {styles.greencontainer}>
@@ -137,6 +165,8 @@ const styles = StyleSheet.create({
     graphbox: {
         height:200,
         borderWidth: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
         borderColor: '#52C8B2',
     },
     boxcontainer: {

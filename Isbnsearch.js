@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Picker} from
 import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
+import SwitchButton from 'switch-button-react-native';
 
 export default class Isbnsearch extends React.Component{
     constructor(props) {
@@ -52,8 +53,22 @@ export default class Isbnsearch extends React.Component{
                                 <View style = {styles.popbtn}>
                                     <View style = {{width: 10,}}></View>
                                     <View style = {styles.popbtnleft}>
-                                        <TouchableOpacity style = {styles.smallbtn}><Text>읽는 중</Text></TouchableOpacity>
-                                        <TouchableOpacity style = {styles.smallbtn}><Text>완독</Text></TouchableOpacity>
+                                        <SwitchButton
+                                            onValueChange={(val) => this.setState({activeSwitch: val})}
+                                            text1 = '읽는 중'
+                                            text2 = '완독'
+                                            switchWidth = {120}
+                                            switchHeight = {30}
+                                            switchdirection = 'ltr'
+                                            switchBorderRadius = {0}
+                                            switchSpeedChange = {500}
+                                            switchBorderColor = '#52C8B2'
+                                            switchBackgroundColor = '#F2F2F2'
+                                            btnBorderColor = '#52C8B2'
+                                            btnBackgroundColor = '#52C8B2'
+                                            fontcolor = '#333'
+                                            activeFontColor = '#FFF'
+                                        />
                                     </View>
                                 </View>
                                 <View style = {styles.popbtnbig}>

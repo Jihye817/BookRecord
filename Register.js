@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, StatusBar, Picker, TextInput, CheckBox, TouchableOpacity} from 'react-native';
 import cstyle from './Styles';
+import SwitchButton from 'switch-button-react-native';
 //another test
 export default class Mainpage extends React.Component{
   
@@ -9,7 +10,8 @@ export default class Mainpage extends React.Component{
     this.state = { //연령 셀렉트박스를 위한 것
       active:true,
       pickerSelect: '연령',
-      checked: false
+      checked: false,
+      activeSwitch: 1 //성별체크
     }
   }
   handleToggle(){ //여성/남성 체크 위한 것. 나중에 수정 가능성 있음
@@ -39,12 +41,22 @@ export default class Mainpage extends React.Component{
                   </View>
                   <Text style = {styles.rgtxt}>성별</Text>
                   <View style = {styles.genderwrap}>
-                    <TouchableOpacity style = {[styles.toggle, {backgroundColor:bgColor}]} onPress={()=>this.handleToggle()}>
-                      <Text style = {styles.greenbtntxt}>여성</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style = {[styles.toggle, {backgroundColor:bgColor2}]} onPress={()=>this.handleToggle()}>
-                      <Text style = {styles.greenbtntxt}>남성</Text>
-                    </TouchableOpacity>
+                    <SwitchButton
+                      style = {styles.toggle}
+                      onValueChange={(val) => this.setState({activeSwitch: val})}
+                      text1 = '남자'
+                      text2 = '여자'
+                      switchWidth = {240}
+                      switchdirection = 'ltr'
+                      switchBorderRadius = {0}
+                      switchSpeedChange = {500}
+                      switchBorderColor = '#52C8B2'
+                      switchBackgroundColor = '#F2F2F2'
+                      btnBorderColor = '#52C8B2'
+                      btnBackgroundColor = '#52C8B2'
+                      fontcolor = '#333'
+                      activeFontColor = '#FFF'
+                    />
                   </View>
                   <Text style = {styles.rgtxt}>생년월일 (ex : 19990101)</Text>
                   <View style = {styles.inputwithbtn}>
@@ -153,10 +165,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     height: 40,
+    paddingBottom:5,
   },
   toggle: {
     height: 40,
-    width: '50%',
     justifyContent: 'center',
     backgroundColor: '#52C8BE',
   },
