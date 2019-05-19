@@ -2,8 +2,21 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Picker} from 'react-native';
 import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import Modal from 'react-native-modal';
+import SwitchButton from 'switch-button-react-native';
 
 export default class Isbnsearch extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            isPopVisible: false,
+        };
+    }
+
+    togglePop = () => {
+        this.setState({ isPopVisible : !this.state.isPopVisible});
+    }
+
     render(){
         return(
             <View style = {cstyle.greycontainer}>
@@ -12,7 +25,7 @@ export default class Isbnsearch extends React.Component{
                 </View>
                 <View style = {styles.secondbox}>
                     <TextInput style = {styles.input} />
-                    <TouchableOpacity style = {styles.searchbtn}>
+                    <TouchableOpacity style = {styles.searchbtn} onPress = {this.togglePop}>
                         <IonIcon name = "ios-search" size={30} color='#FFF' />
                     </TouchableOpacity>
                 </View>
@@ -21,11 +34,55 @@ export default class Isbnsearch extends React.Component{
                         <Text style = {{color: '#FFF', fontSize: 20}}>등록 취소</Text>
                     </TouchableOpacity>
                 </View>
+                <Modal isVisible = {this.state.isPopVisible}>
+                    <View style ={styles.popfirst}>
+                        <View style = {styles.popsecond}>
+                            <View style ={styles.popthird}>
+                                <View style = {{ paddingTop:30,}}>
+                                    <Text style = {{color: '#52C8B2', fontSize: 20,}}>도서 정보 확인</Text>
+                                </View>
+                                <View style = {{ paddingTop:20,}}>
+                                    <Image style = {{width:150, resizeMode: 'contain',}} source={require('./images/for_i.jpg')}></Image>
+                                </View>
+                                <View style = {{ paddingTop:10,}}>
+                                    <Text style = {{fontSize: 18,}}>i에게</Text>
+                                </View>
+                                <View style = {{ paddingTop:10,}}>
+                                    <Text style = {{color: '#D7D7D7'}}>김소연 | 아침달 시집 | 2018-09-10</Text>
+                                </View>
+                                <View style = {styles.popbtn}>
+                                    <View style = {{width: 10,}}></View>
+                                    <View style = {styles.popbtnleft}>
+                                        <SwitchButton
+                                            onValueChange={(val) => this.setState({activeSwitch: val})}
+                                            text1 = '읽는 중'
+                                            text2 = '완독'
+                                            switchWidth = {120}
+                                            switchHeight = {30}
+                                            switchdirection = 'ltr'
+                                            switchBorderRadius = {0}
+                                            switchSpeedChange = {500}
+                                            switchBorderColor = '#52C8B2'
+                                            switchBackgroundColor = '#F2F2F2'
+                                            btnBorderColor = '#52C8B2'
+                                            btnBackgroundColor = '#52C8B2'
+                                            fontcolor = '#333'
+                                            activeFontColor = '#FFF'
+                                        />
+                                    </View>
+                                </View>
+                                <View style = {styles.popbtnbig}>
+                                    <TouchableOpacity style = {styles.bigbtn} onPress = {this.togglePop}><Text style = {{fontSize: 16, color: '#FFF'}}>취소</Text></TouchableOpacity>
+                                    <TouchableOpacity style = {styles.bigbtn} onPress = {this.togglePop}><Text style = {{fontSize: 16, color: '#FFF'}}>등록하기</Text></TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
     }
 }
-
 const styles = StyleSheet.create({
     firstbox: {
         flex: 1,
@@ -62,4 +119,52 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    popfirst: {
+        flex:1, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    popsecond: {
+        backgroundColor: '#FFF', 
+        height: '80%', 
+        width: '90%', 
+        alignItems: 'center'
+    },
+    popthird: {
+        width:'90%', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    popbtn: {
+        width: '90%', 
+        flexDirection: 'row', 
+        paddingTop:15, 
+        justifyContent: 'space-between'
+    },
+    popbtnleft: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        width: 120
+    },
+    smallbtn: {
+        width: 50, 
+        height: 26, 
+        backgroundColor: '#F2F2F2', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    popbtnbig: {
+        width: '100%', 
+        flexDirection: 'row', 
+        justifyContent: 'space-around', 
+        paddingTop:10,
+    },
+    bigbtn: {
+        width: 120, 
+        height: 35, 
+        backgroundColor: '#52C8B2', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+
 })
