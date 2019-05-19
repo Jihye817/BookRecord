@@ -8,11 +8,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.16.4",
-=======
-    "prop-types": "^15.7.2",
->>>>>>> master
     "react": "16.8.3",
     "react-native": "0.59.2",
     "react-native-camera": "^2.9.0",
@@ -25,14 +21,9 @@
     "react-native-responsive-linechart": "^1.5.3",
     "react-native-svg": "^9.4.0",
     "react-native-vector-icons": "^6.4.2",
-<<<<<<< HEAD
     "react-navigation": "^3.9.1",
     "request": "^2.88.0",
     "require": "^2.4.20"
-=======
-    "react-navigation": "^3.6.0",
-    "switch-button-react-native": "^1.0.3"
->>>>>>> master
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
