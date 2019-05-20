@@ -52,6 +52,10 @@ export default class Found extends React.Component{
         this.email = null;
     }
 
+    searchButton = () => {
+        
+    }
+
 
     render(){
         const data = this.state.apiData;
@@ -90,9 +94,13 @@ export default class Found extends React.Component{
                             <Text style = {styles.textStyle}>View Data</Text>
                         </TouchableHighlight>
 
+                        <TouchableHighlight style={styles.button} onPress = {this.searchButton}>
+                            <Text style = {styles.textStyle}>Search</Text>
+                        </TouchableHighlight>               
+
                         <TouchableHighlight style={styles.button} onPress = {this.saveButton}>
                             <Text style = {styles.textStyle}>Save</Text>
-                        </TouchableHighlight>                        
+                        </TouchableHighlight>           
 
                         <ScrollView contentContainerStyle={styles.infocontainer}>
                             {dataDisplay}
