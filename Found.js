@@ -8,13 +8,15 @@ export default class Found extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            apiData: []
+            apiData: [],
+            naData: []
         }
         this.user_name = null;
         this.email = null;
         this.phone_number = null;
     }
 
+    // Button 눌렀을 때 event
     getButton = () => {
         fetch('http://220.149.242.12:10001/user',{
             method: 'GET'
@@ -28,14 +30,34 @@ export default class Found extends React.Component{
         this.user_name = null;
     }
 
+    saveButton = () => {
+        fetch('http://220.149.242.12:10001/user',{
+            method: 'POST',
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: this.user_name, email: this.email})
+        }).then((responseData) => {
+            return responseData.json();
+        }).then((jsonData) => {
+            console.log(jsonData);
+            this.setState({naData:jsonData})
+            console.log(this.state.naData)
+        }).done();
+        this.user_name = null;
+        this.email = null;
+    }
+
+
     render(){
         const data = this.state.apiData;
         let dataDisplay = data.map(function(jsonData){
             return (
                 <View key={jsonData.user_name}>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{ color:'#000'}}>{jsonData.user_name}</Text>
-                        <Text style={{ color:'#000'}}>{jsonData.email}</Text>
+                        <Text style={{ color:'#000'}}>{jsonData.user_name} | </Text>
+                        <Text style={{ color:'#000'}}>{jsonData.email} | </Text>
                     </View>
                 </View>
             )
@@ -64,6 +86,10 @@ export default class Found extends React.Component{
                         <TouchableHighlight style={styles.button} onPress = {this.getButton}>
                             <Text style = {styles.textStyle}>View Data</Text>
                         </TouchableHighlight>
+
+                        <TouchableHighlight style={styles.button} onPress = {this.saveButton}>
+                            <Text style = {styles.textStyle}>Save</Text>
+                        </TouchableHighlight>                        
 
                         <ScrollView contentContainerStyle={styles.infocontainer}>
                             {dataDisplay}
