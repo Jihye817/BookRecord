@@ -16,7 +16,7 @@ export default class Found extends React.Component{
     }
 
     getButton = () => {
-        fetch('http://220.149.242.12:3000/user',{
+        fetch('http://220.149.242.12:10001/user',{
             method: 'GET'
         }).then((response) => {
             return responseData.json();
