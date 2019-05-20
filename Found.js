@@ -73,7 +73,7 @@ export default class Found extends React.Component{
                             <Text style = {styles.textStyle}>View Data</Text>
                         </TouchableHighlight>
 
-                        <ScrollView contentContainerStyle={styles.container}>
+                        <ScrollView contentContainerStyle={styles.infocontainer}>
                             {dataDisplay}
                         </ScrollView>
                     </View>
