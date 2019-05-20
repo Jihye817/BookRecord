@@ -10,7 +10,6 @@ export default class Found extends React.Component{
         this.state = {
             apiData: []
         }
-        this.dataId = null;
         this.user_name = null;
         this.email = null;
         this.phone_number = null;
@@ -26,16 +25,15 @@ export default class Found extends React.Component{
             this.setState({apiData:jsonData})
             console.log(this.state.apiData)
         }).done();
-        this.dataId = null;
+        this.user_name = null;
     }
 
     render(){
         const data = this.state.apiData;
         let dataDisplay = data.map(function(jsonData){
             return (
-                <View key={jsonData.id}>
+                <View key={jsonData.user_name}>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{ color:'#000'}}>{jsonData.id}</Text>
                         <Text style={{ color:'#000'}}>{jsonData.user_name}</Text>
                         <Text style={{ color:'#000'}}>{jsonData.email}</Text>
                     </View>
@@ -51,12 +49,6 @@ export default class Found extends React.Component{
                     </View>
                     <View style = {styles.infocontainer}>
                         <Text>App users</Text>
-                        <TextInput style={styles.input}
-                        placeholder = 'Id'
-                        onChangeText = {(text) => {this.dataId = text}}
-                        value = {this.dataId}
-                        underlineColorAndroid = 'transparent'
-                        />
                         <TextInput style={styles.input}
                         placeholder = 'Enter Name'
                         onChangeText = {(text) => {this.user_name = text}}
