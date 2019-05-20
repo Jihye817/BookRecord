@@ -41,7 +41,7 @@ export default class Found extends React.Component{
         }).then((responseData) => {
             return responseData.json();
         }).then((jsonData) => {
-            console.log(jsonData);
+            //console.log(jsonData);
             this.setState({naData:jsonData})
             console.log(this.state.naData)
         }).done();
