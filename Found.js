@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, StatusBar,TextInput} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, StatusBar,TextInput, style} from 'react-native';
 import cstyle from './Styles';
 
 export default class Found extends React.Component{
