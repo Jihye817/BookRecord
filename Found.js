@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
         height : 30,
         width : '90%',
         padding : 4,
-        marginBotton : 7,
+        marginBottom : 7,
         fontSize:34,
-        borderwidth : 1,
+        borderWidth : 1,
     }
 });
