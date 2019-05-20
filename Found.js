@@ -31,17 +31,20 @@ export default class Found extends React.Component{
     }
 
     saveButton = () => {
+
         fetch('http://220.149.242.12:10001/user',{
             method: 'POST',
             headers: {
                 'Accept':'application/json',
-                //'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({name: this.user_name, email: this.email})
+            body: JSON.stringify({user_name: this.user_name, email: this.email})
         }).then((responseData) => {
+            alert(responseData);
             return responseData.text();
         }).then((jsonData) => {
             //console.log(jsonData);
+            alert(jsonData);
             this.setState({naData:jsonData})
             console.log(this.state.naData)
         }).done();
