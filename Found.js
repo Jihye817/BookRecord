@@ -39,7 +39,7 @@ export default class Found extends React.Component{
             },
             body: JSON.stringify({name: this.user_name, email: this.email})
         }).then((responseData) => {
-            return responseData.json();
+            return responseData.text();
         }).then((jsonData) => {
             //console.log(jsonData);
             this.setState({naData:jsonData})
