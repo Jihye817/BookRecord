@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, StatusBar,} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, StatusBar,TextInput} from 'react-native';
 import cstyle from './Styles';
 
 export default class Found extends React.Component{
@@ -29,11 +29,13 @@ export default class Found extends React.Component{
                         placeholder = 'Id'
                         onChangeText = {(text) => {this.dataId = text}}
                         value = {this.dataId}
+                        underlineColorAndroid = 'transparent'
                     />
                     <TextInput style={style.input}
                         placeholder = 'Enter Name'
-                        onChangeText = {(text) => {this.dataId = text}}
-                        value = {this.dataId}
+                        onChangeText = {(text) => {this.name = text}}
+                        value = {this.name}
+                        underlineColorAndroid = 'transparent'
                     />
                 </View>
             </SafeAreaView>
