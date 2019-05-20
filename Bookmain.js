@@ -3,8 +3,48 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
 
+var SQLite = require('react-native-sqlite-storage')
+//var db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: '..\android\app\src\main\assets\www\bookDB.db'}, this.openCB, this.errorCB)
+
 export default class Bookmain extends React.Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            booknum: 0,
+        };
+
+        var db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: 1}, this.openCB, this.errorCB);
+        db.transaction((tx) => {
+            tx.executeSql('SELECT * FROM readingoal', [], (tx,results) => {
+                var len = results.rows.length;
+                if(len==0)
+                {console.log("LENIS0")}
+                //else
+                //{console.log("FUCKYOUITISNOT")}
+                //for (let i = 0; i < len; i++) {
+                //    let row = results.rows.item(i);
+                //    console.log(`Employee num: ${row.books}`);
+                //}
+                let row = results.rows.item(0);
+                console.log(`Employee num: ${row.books}`);
+                this.setState({booknum: row.books});
+            });
+        });
+    }
+
+    errorCB(err) {
+        console.log("SQL Error: " + err);
+      }
     
+      successCB() {
+        console.log("SQL executed fine");
+      }
+    
+      openCB() {
+        console.log("Database OPENED");
+      }
+
     render() {
         return(
             <View style = {cstyle.whitecontainer}>
@@ -21,7 +61,7 @@ export default class Bookmain extends React.Component{
                                     <View style = {styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>6권</Text>
+                                            <Text style = {styles.pietext}>{this.state.booknum}</Text>
                                         </View>
                                     </View>
                                 </View>
