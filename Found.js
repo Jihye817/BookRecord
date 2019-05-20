@@ -53,7 +53,7 @@ export default class Found extends React.Component{
     }
 
     searchButton = () => {
-        fetch('http://220.149.242.12:10001/user'+(this.user_name),{
+        fetch('http://220.149.242.12:10001/user/'+(this.user_name),{
             method: 'GET'
         }).then((responseData) => {
             return responseData.json();
