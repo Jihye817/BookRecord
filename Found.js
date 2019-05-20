@@ -3,6 +3,16 @@ import {View, Text, StyleSheet, SafeAreaView, StatusBar,} from 'react-native';
 import cstyle from './Styles';
 
 export default class Found extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            apiData: []
+        }
+        this.dataId = null;
+        this.name = null;
+        this.email = null;
+        this.phone_number = null;
+    }
     render(){
         return(
             <SafeAreaView style = {[cstyle.greencontainer, {flex : 1}]}>
@@ -12,8 +22,19 @@ export default class Found extends React.Component{
 
                     </View>
                     <View style = {styles.infocontainer}>
-
+                        <Text>App users</Text>
                     </View>
+
+                    <TextInput style={style.input}
+                        placeholder = 'Id'
+                        onChangeText = {(text) => {this.dataId = text}}
+                        value = {this.dataId}
+                    />
+                    <TextInput style={style.input}
+                        placeholder = 'Enter Name'
+                        onChangeText = {(text) => {this.dataId = text}}
+                        value = {this.dataId}
+                    />
                 </View>
             </SafeAreaView>
         );
@@ -36,4 +57,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         justifyContent:'center',
     },
+    input: {
+        textAlign:'center',
+        height : 30,
+        width : '90%',
+        padding : 4,
+        marginBotton : 7,
+        fontSize:34,
+        borderwidth : 1,
+    }
 });
