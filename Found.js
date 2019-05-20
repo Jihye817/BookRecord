@@ -35,7 +35,7 @@ export default class Found extends React.Component{
             method: 'POST',
             headers: {
                 'Accept':'application/json',
-                'Content-Type': 'application/json'
+                //'Content-Type': 'application/json'
             },
             body: JSON.stringify({name: this.user_name, email: this.email})
         }).then((responseData) => {
