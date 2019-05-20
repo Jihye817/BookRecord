@@ -21,7 +21,7 @@ export default class Found extends React.Component{
             method: 'GET'
         }).then((response) => {
             return responseData.json();
-        }).them((jsonData) => {
+        }).then((jsonData) => {
             console.log(jsonData);
             this.setState({apiData:jsonData})
             console.log(this.state.apiData)
