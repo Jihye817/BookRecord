@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, StatusBar,TextInput, TouchableHighlight, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, StatusBar,TextInput} from 'react-native';
 import cstyle from './Styles';
 import { TouchableHighlight, ScrollView } from 'react-native-gesture-handler';
 //import console = require('console');
