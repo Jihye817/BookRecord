@@ -76,7 +76,6 @@ export default class Found extends React.Component{
     }
 
     updateButton = () => {
-
         fetch('http://220.149.242.12:10001/user',{
             method: 'PUT',
             headers: {
@@ -124,6 +123,12 @@ export default class Found extends React.Component{
                         placeholder = 'Enter email'
                         onChangeText = {(text) => {this.email = text}}
                         value = {this.email}
+                        underlineColorAndroid = 'transparent'
+                        />
+                        <TextInput style={styles.input}
+                        placeholder = 'Enter age'
+                        onChangeText = {(text) => {this.age = text}}
+                        value = {this.age}
                         underlineColorAndroid = 'transparent'
                         />
                         <TouchableHighlight style={styles.button} onPress = {this.getButton}>
