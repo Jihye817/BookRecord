@@ -5,6 +5,7 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import SwitchButton from 'switch-button-react-native';
 import moment from "moment";
+import { declareExportAllDeclaration } from '@babel/types';
 //import console = require('console');
 
 export default class Isbnsearch extends React.Component {
@@ -37,7 +38,7 @@ export default class Isbnsearch extends React.Component {
             method: 'GET'
         }).then((responseData) => {
             return responseData.json();
-        }).them((jsonData) => {
+        }).then((jsonData) => {
             console.log(jsonData);
             this.setState({ apiData: jsonData })
             console.log(this.state.apiData)
@@ -60,6 +61,7 @@ export default class Isbnsearch extends React.Component {
         const data = this.state.apiData;
         const today = this.state.currentDate;
         let dataDisplay = data.map(function (jsonData) {
+            alert(jsonData);
             return (
                 <View style={styles.popthird}>
                     <View style={{ paddingTop: 30, }}>
