@@ -17,20 +17,19 @@ export default class Isbnsearch extends React.Component {
             currentDate: new Date(),
             markedDate: moment(new Date()).format(),
             isPopVisible: false,
-            apiData: [
-                this.ISBN = null,
-                this.book_name = null,
-                this.img_src = null,
-                this.author = null,
-                this.publisher = null,
-                this.public_date = null,
-                this.more_url = null,
-                this.read_rate = null,
-                this.read_date = null,
-                this.category = null,
-                this.best = null
-            ]
+            apiData: [],
         }
+        this.ISBN = null;
+        this.book_name = null;
+        this.img_src = null;
+        this.author = null;
+        this.publisher = null;
+        this.public_date = null;
+        this.more_url = null;
+        this.read_rate = null;
+        this.read_date = null;
+        this.category = null;
+        this.best = null;
     }
 
     togglePop = () => {
