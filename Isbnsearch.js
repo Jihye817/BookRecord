@@ -62,51 +62,52 @@ export default class Isbnsearch extends React.Component {
         const today = this.state.currentDate;
         let dataDisplay = function (jsonData) {
             return (
-                <View style={styles.popfirst}>
-                    <View style={styles.popsecond}>
-                        <View style={styles.popthird}>
-                            <View style={{ paddingTop: 30, }}>
-                                <Text style={{ color: '#52C8B2', fontSize: 20, }}>도서 정보 확인</Text>
-                            </View>
-                            <View style={{ paddingTop: 20, }}>
-                                <Image style={{ width: 150, resizeMode: 'contain', }}
-                                    source={{ uri: jsonData.items.image }}>
-                                </Image>
-                            </View>
-                            <View style={{ paddingTop: 10, }}>
-                                <Text style={{ fontSize: 18, }}>{jsonData.items.title}</Text>
-                            </View>
-                            <View style={{ paddingTop: 10, }}>
-                                <Text style={{ color: '#D7D7D7' }}>{jsonData.items.author} | {jsonData.items.publisher} | {today}</Text>
-                            </View>
-                            <View style={styles.popbtn}>
-                                <View style={{ width: 10, }}></View>
-                                <View style={styles.popbtnleft}>
-                                    <SwitchButton
-                                        onValueChange={(val) => this.setState({ activeSwitch: val })}
-                                        text1='읽는 중'
-                                        text2='완독'
-                                        switchWidth={120}
-                                        switchHeight={30}
-                                        switchdirection='ltr'
-                                        switchBorderRadius={0}
-                                        switchSpeedChange={500}
-                                        switchBorderColor='#52C8B2'
-                                        switchBackgroundColor='#F2F2F2'
-                                        btnBorderColor='#52C8B2'
-                                        btnBackgroundColor='#52C8B2'
-                                        fontcolor='#333'
-                                        activeFontColor='#FFF'
-                                    />
-                                </View>
-                            </View>
-                            <View style={styles.popbtnbig}>
-                                <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>취소</Text></TouchableOpacity>
-                                <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>등록하기</Text></TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </View>
+                <View>텍스트표시</View>
+                // <View style={styles.popfirst}>
+                //     <View style={styles.popsecond}>
+                //         <View style={styles.popthird}>
+                //             <View style={{ paddingTop: 30, }}>
+                //                 <Text style={{ color: '#52C8B2', fontSize: 20, }}>도서 정보 확인</Text>
+                //             </View>
+                //             <View style={{ paddingTop: 20, }}>
+                //                 <Image style={{ width: 150, resizeMode: 'contain', }}
+                //                     source={{ uri: jsonData.items.image }}>
+                //                 </Image>
+                //             </View>
+                //             <View style={{ paddingTop: 10, }}>
+                //                 <Text style={{ fontSize: 18, }}>{jsonData.items.title}</Text>
+                //             </View>
+                //             <View style={{ paddingTop: 10, }}>
+                //                 <Text style={{ color: '#D7D7D7' }}>{jsonData.items.author} | {jsonData.items.publisher} | {today}</Text>
+                //             </View>
+                //             <View style={styles.popbtn}>
+                //                 <View style={{ width: 10, }}></View>
+                //                 <View style={styles.popbtnleft}>
+                //                     <SwitchButton
+                //                         onValueChange={(val) => this.setState({ activeSwitch: val })}
+                //                         text1='읽는 중'
+                //                         text2='완독'
+                //                         switchWidth={120}
+                //                         switchHeight={30}
+                //                         switchdirection='ltr'
+                //                         switchBorderRadius={0}
+                //                         switchSpeedChange={500}
+                //                         switchBorderColor='#52C8B2'
+                //                         switchBackgroundColor='#F2F2F2'
+                //                         btnBorderColor='#52C8B2'
+                //                         btnBackgroundColor='#52C8B2'
+                //                         fontcolor='#333'
+                //                         activeFontColor='#FFF'
+                //                     />
+                //                 </View>
+                //             </View>
+                //             <View style={styles.popbtnbig}>
+                //                 <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>취소</Text></TouchableOpacity>
+                //                 <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>등록하기</Text></TouchableOpacity>
+                //             </View>
+                //         </View>
+                //     </View>
+                // </View>
             )
         };
         return (
