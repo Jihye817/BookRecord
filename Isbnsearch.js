@@ -34,6 +34,7 @@ export default class Isbnsearch extends React.Component {
     }
 
     togglePop = () => {
+        this.setState({ isPopVisible: !this.state.isPopVisible });
         fetch('http://220.149.242.12:10001/search/book/' + (this.ISBN), {
             method: 'GET'
         }).then((responseData) => {
@@ -43,7 +44,6 @@ export default class Isbnsearch extends React.Component {
             this.setState({ apiData: jsonData })
             console.log(this.state.apiData)
         }).done();
-        this.setState({ isPopVisible: !this.state.isPopVisible });
         this.ISBN = null;
         this.book_name = null;
         this.img_src = null;
