@@ -34,7 +34,7 @@ export default class Isbnsearch extends React.Component {
     }
 
     togglePop = () => {
-        fetch('http://220.149.242.12:10001/search/book/:'+(this.ISBN), {
+        fetch('http://220.149.242.12:10001/search/book/'+(this.ISBN), {
             method: 'GET'
         }).then((responseData) => {
             return responseData.json();
@@ -61,9 +61,6 @@ export default class Isbnsearch extends React.Component {
         const data = this.state.apiData;
         const today = this.state.currentDate;
         let dataDisplay = data.map(function (jsonData) {
-            alert(today);
-            alert(jsonData);
-            alert(jsonData.items);
             return (
                 <View style={styles.popthird}>
                     <View style={{ paddingTop: 30, }}>
@@ -108,6 +105,7 @@ export default class Isbnsearch extends React.Component {
                 </View>
             )
         });
+
         return (
             <View style={cstyle.greycontainer}>
                 <View style={styles.firstbox}>
@@ -137,6 +135,7 @@ export default class Isbnsearch extends React.Component {
                 </Modal>
             </View>
         );
+        
     }
 }
 const styles = StyleSheet.create({
