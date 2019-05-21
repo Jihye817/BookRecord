@@ -13,7 +13,9 @@ export default class Bookmain extends React.Component{
         this.state = {
             booknum: 0,
         };
+    }
 
+    componentDidMount() {
         var db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: 1}, this.openCB, this.errorCB);
         db.transaction((tx) => {
             tx.executeSql('SELECT * FROM readingoal', [], (tx,results) => {
@@ -21,13 +23,13 @@ export default class Bookmain extends React.Component{
                 if(len==0)
                 {console.log("LENIS0")}
                 //else
-                //{console.log("FUCKYOUITISNOT")}
+                //{console.log("ITISNOT0")}
                 //for (let i = 0; i < len; i++) {
                 //    let row = results.rows.item(i);
-                //    console.log(`Employee num: ${row.books}`);
+                //    console.log(`Book num: ${row.books}`);
                 //}
                 let row = results.rows.item(0);
-                console.log(`Employee num: ${row.books}`);
+                console.log(`Book num: ${row.books}`);
                 this.setState({booknum: row.books});
             });
         });
@@ -35,15 +37,15 @@ export default class Bookmain extends React.Component{
 
     errorCB(err) {
         console.log("SQL Error: " + err);
-      }
+    }
     
-      successCB() {
+    successCB() {
         console.log("SQL executed fine");
-      }
+    }
     
-      openCB() {
+    openCB() {
         console.log("Database OPENED");
-      }
+    }
 
     render() {
         return(
@@ -68,9 +70,9 @@ export default class Bookmain extends React.Component{
                                 <View style = {styles.smallbox}>
                                     <Text style = {styles.smalltext}>달성량</Text>
                                     <View style = {styles.pieview}>
-                                        <Pie radius={40} innerRadius={35} series={[60]} colors={['#FFD966']} backgroundColor='#FFF'/>
+                                        <Pie radius={40} innerRadius={35} series={[30]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>60%</Text>
+                                            <Text style = {styles.pietext}>30%</Text>
                                         </View>
                                     </View>
                                 </View>

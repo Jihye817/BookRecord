@@ -6,12 +6,15 @@ import cstyle from './Styles';
 import {Header} from 'react-native-elements';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
+var SQLite = require('react-native-sqlite-storage')
+let db;
+
 export default class Goal extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             value : '0'
-        }
+        };
     }
 
     onSelect(value, label) { //목표권수 select를 위한 함수
@@ -22,6 +25,46 @@ export default class Goal extends React.Component{
         drawerIcon:(
             <IonIcon name='md-flag' size={24} color = '#52C8B2'/>
         )
+    }
+
+    componentDidMount() {
+        db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: 1}, this.openCB, this.errorCB);
+    }
+
+    errorCB(err) {
+        console.log("SQL Error: " + err);
+    }
+    
+    successCB() {
+        console.log("SQL executed fine");
+    }
+    
+    openCB() {
+        console.log("Database OPENED");
+    }
+
+    onUpdatePress() {
+        const {value} = this.state;
+        if(value === ''){
+            alert("정확한 수를 입력하세요");
+            return;
+        }
+        db.transaction((tx) => {
+            let sql = `SELECT * FROM readingoal WHERE id = 1`;
+            tx.executeSql(sql, [], (tx, results) => {
+                const len = results.rows.length;
+                if(len == 1) {
+                    let sql = `UPDATE readingoal SET books = ${value}`;
+                    tx.executeSql(sql, [], (tx, results) => {
+                        alert("갱신완료!");
+                    });
+                }
+                else{
+                    alert("다시하세요틀렸음");
+                    return;
+                }
+            });
+        });
     }
 
     render() {
@@ -52,7 +95,7 @@ export default class Goal extends React.Component{
                 </View>
 
                 <View style = {styles.thirdcontainer}>
-                    <TouchableOpacity style = {styles.greenbtn}><Text style = {styles.btntext}>등록</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.onUpdatePress()}} style = {styles.greenbtn}><Text style = {styles.btntext}>등록</Text></TouchableOpacity>
                 </View>
             </View>
         );
