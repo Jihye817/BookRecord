@@ -62,7 +62,8 @@ export default class Isbnsearch extends React.Component {
         const today = this.state.currentDate;
         let dataDisplay = data.map(function (jsonData) {
             alert(today);
-            alert(jsonData+jsonData.items)
+            alert(jsonData);
+            alert(jsonData.items);
             return (
                 <View style={styles.popthird}>
                     <View style={{ paddingTop: 30, }}>
@@ -106,7 +107,7 @@ export default class Isbnsearch extends React.Component {
                     </View>
                 </View>
             )
-        })
+        });
         return (
             <View style={cstyle.greycontainer}>
                 <View style={styles.firstbox}>
