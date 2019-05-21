@@ -14,6 +14,11 @@ export default class Isbnsearch extends React.Component{
     }
 
     togglePop = () => {
+        fetch('http://220.149.242.12:10001/search/book',{
+            method: 'GET'
+        }).then((responseData) => {
+            return responseData.json();
+        })
         this.setState({ isPopVisible : !this.state.isPopVisible});
     }
 
