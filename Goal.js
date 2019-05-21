@@ -5,6 +5,7 @@ import {DrawerActions} from 'react-navigation';
 import cstyle from './Styles';
 import {Header} from 'react-native-elements';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import Modal from 'react-native-modal';
 
 var SQLite = require('react-native-sqlite-storage')
 let db;
@@ -13,8 +14,13 @@ export default class Goal extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            value : '0'
+            value : '0',
+            isPopVisible: false,
         };
+    }
+
+    togglePop = () => { //모달 toggle
+        this.setState({ isPopVisible : !this.state.isPopVisible});
     }
 
     onSelect(value, label) { //목표권수 select를 위한 함수
@@ -56,11 +62,11 @@ export default class Goal extends React.Component{
                 if(len == 1) {
                     let sql = `UPDATE readingoal SET books = ${value}`;
                     tx.executeSql(sql, [], (tx, results) => {
-                        alert("갱신완료!");
+                        this.togglePop();
                     });
                 }
                 else{
-                    alert("다시하세요틀렸음");
+                    alert("0보다 큰 수를 입력하세요");
                     return;
                 }
             });
@@ -97,6 +103,15 @@ export default class Goal extends React.Component{
                 <View style = {styles.thirdcontainer}>
                     <TouchableOpacity onPress={() => {this.onUpdatePress()}} style = {styles.greenbtn}><Text style = {styles.btntext}>등록</Text></TouchableOpacity>
                 </View>
+
+                <Modal style ={{justifyContent:'center', alignItems: 'center'}} isVisible = {this.state.isPopVisible}>
+                    <View style ={styles.popfirst}>
+                        <View style = {styles.popwhite}>
+                            <Text style = {{fontSize: 16,paddingBottom: 40,}}>변경되었습니다</Text>
+                            <TouchableOpacity onPress = {this.togglePop}><Text style = {{fontSize: 14, color: '#52C8B2'}}>확인</Text></TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
       }
@@ -157,4 +172,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#FFF'
     },
+    popfirst: {
+        backgroundColor:'#FFF',
+        width: 200,
+        height: 150,
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    popwhite: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
 });

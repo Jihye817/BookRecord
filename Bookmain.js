@@ -2,16 +2,18 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
+import {withNavigationFocus} from 'react-navigation';
 
 var SQLite = require('react-native-sqlite-storage')
 //var db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: '..\android\app\src\main\assets\www\bookDB.db'}, this.openCB, this.errorCB)
 
-export default class Bookmain extends React.Component{
+class Bookmain extends React.Component{
     constructor(props){
         super(props)
 
         this.state = {
             booknum: 0,
+            bookpercent:0,
         };
     }
 
@@ -31,6 +33,9 @@ export default class Bookmain extends React.Component{
                 let row = results.rows.item(0);
                 console.log(`Book num: ${row.books}`);
                 this.setState({booknum: row.books});
+                let per = (1 / row.books) * 100;
+                per = per.toFixed(0);
+                this.setState({bookpercent: per });
             });
         });
     }
@@ -45,6 +50,12 @@ export default class Bookmain extends React.Component{
     
     openCB() {
         console.log("Database OPENED");
+    }
+
+    componentDidUpdate (previousProps) {
+        if(!previousProps.isFocused && this.props.isFocused){
+            this.componentDidMount()
+        }
     }
 
     render() {
@@ -63,16 +74,16 @@ export default class Bookmain extends React.Component{
                                     <View style = {styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>{this.state.booknum}</Text>
+                                            <Text style = {styles.pietext}>1권</Text>
                                         </View>
                                     </View>
                                 </View>
                                 <View style = {styles.smallbox}>
                                     <Text style = {styles.smalltext}>달성량</Text>
                                     <View style = {styles.pieview}>
-                                        <Pie radius={40} innerRadius={35} series={[30]} colors={['#FFD966']} backgroundColor='#FFF'/>
+                                        <Pie radius={40} innerRadius={35} series={[this.state.bookpercent]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>30%</Text>
+                                            <Text style = {styles.pietext}>{this.state.bookpercent}%</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -81,7 +92,7 @@ export default class Bookmain extends React.Component{
                                     <View style = {styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>10권</Text>
+                                            <Text style = {styles.pietext}>{this.state.booknum}권</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -123,6 +134,8 @@ export default class Bookmain extends React.Component{
         );
     }
 }
+
+export default withNavigationFocus(Bookmain)
 
 const styles = StyleSheet.create({
     firstcontainer: {
