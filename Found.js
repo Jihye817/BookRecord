@@ -14,6 +14,7 @@ export default class Found extends React.Component{
         this.user_name = null;
         this.email = null;
         this.phone_number = null;
+        this.age = null;
     }
 
     // Button 눌렀을 때 event
@@ -40,11 +41,11 @@ export default class Found extends React.Component{
             },
             body: JSON.stringify({user_name: this.user_name, email: this.email})
         }).then((responseData) => {
-            alert(responseData);
+            //alert(responseData);
             return responseData.text();
         }).then((jsonData) => {
             //console.log(jsonData);
-            alert(jsonData);
+            //alert(jsonData);
             this.setState({naData:jsonData})
             console.log(this.state.naData)
         }).done();
@@ -65,6 +66,32 @@ export default class Found extends React.Component{
         this.user_name = null;
     }
 
+    deleteButton = () => {
+        fetch('http://220.149.242.12:10001/user/'+(this.user_name),{
+            method: 'DELETE'
+        }).then((responseData) => {
+            console.log(responseData.rows)
+        }).done();
+        this.user_name = null;
+    }
+
+    updateButton = () => {
+
+        fetch('http://220.149.242.12:10001/user',{
+            method: 'PUT',
+            headers: {
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({user_name: this.user_name, email: this.email, age: this.age})
+        }).then((responseData) => {
+            //alert(responseData);
+            return responseData.text();
+        }).done();
+        this.user_name = null;
+        this.email = null;
+        this.age = null;
+    }
 
     render(){
         const data = this.state.apiData;
@@ -109,7 +136,15 @@ export default class Found extends React.Component{
 
                         <TouchableHighlight style={styles.button} onPress = {this.saveButton}>
                             <Text style = {styles.textStyle}>Save</Text>
-                        </TouchableHighlight>           
+                        </TouchableHighlight>         
+
+                         <TouchableHighlight style={styles.button} onPress = {this.deleteButton}>
+                            <Text style = {styles.textStyle}>Delete</Text>
+                        </TouchableHighlight>     
+                        
+                        <TouchableHighlight style={styles.button} onPress = {this.updateButton}>
+                            <Text style = {styles.textStyle}>Update</Text>
+                        </TouchableHighlight>   
 
                         <ScrollView contentContainerStyle={styles.infocontainer}>
                             {dataDisplay}
