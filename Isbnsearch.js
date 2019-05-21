@@ -60,7 +60,8 @@ export default class Isbnsearch extends React.Component {
     render() {
         const data = this.state.apiData;
         const today = this.state.currentDate;
-        let dataDisplay = function (jsonData) {
+        var dataDisplay = function (jsonData) {
+            console.log(jsonData)
             return (
                 <View style={styles.popfirst}>
                     <View style={styles.popsecond}>
@@ -130,7 +131,7 @@ export default class Isbnsearch extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <Modal isVisible={this.state.isPopVisible}>
-                    {dataDisplay}
+                    {dataDisplay()}
                 </Modal>
             </View>
         );
