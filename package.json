@@ -8,6 +8,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.2",

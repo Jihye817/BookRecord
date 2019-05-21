@@ -4,6 +4,7 @@ import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 import SwitchButton from 'switch-button-react-native';
+import moment from "moment";
 //import console = require('console');
 
 export default class Isbnsearch extends React.Component {
@@ -13,6 +14,8 @@ export default class Isbnsearch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentDate: new Date(),
+            markedDate: moment(new Date()).format("YYYY-MM-DD"),
             isPopVisible: false,
             apiData: [
                 this.ISBN = null,
@@ -56,9 +59,9 @@ export default class Isbnsearch extends React.Component {
 
     render() {
         const data = this.state.apiData;
+        const today = this.state.currentDate;
         let dataDisplay = data.map(function (jsonData) {
-            this.read_date = getFullYear() + getMonth() + getDate();
-            console.log(this.read_date);
+            console.log(today);
             return (
                 <View style={styles.popthird}>
                     <View style={{ paddingTop: 30, }}>
@@ -73,7 +76,7 @@ export default class Isbnsearch extends React.Component {
                         <Text style={{ fontSize: 18, }}>{jsonData.title}</Text>
                     </View>
                     <View style={{ paddingTop: 10, }}>
-                        <Text style={{ color: '#D7D7D7' }}>{jsonData.author} | {jsonData.publisher} | {this.read_date}</Text>
+                        <Text style={{ color: '#D7D7D7' }}>{jsonData.author} | {jsonData.publisher} | {today}</Text>
                     </View>
                     <View style={styles.popbtn}>
                         <View style={{ width: 10, }}></View>
