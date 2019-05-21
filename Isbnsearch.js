@@ -15,7 +15,7 @@ export default class Isbnsearch extends React.Component {
         super(props);
         this.state = {
             currentDate: new Date(),
-            markedDate: moment(new Date()).format("YYYY-MM-DD"),
+            markedDate: moment(new Date()).format(),
             isPopVisible: false,
             apiData: [
                 this.ISBN = null,
@@ -62,6 +62,7 @@ export default class Isbnsearch extends React.Component {
         const today = this.state.currentDate;
         let dataDisplay = data.map(function (jsonData) {
             alert(today);
+            alert(jsonData+jsonData.items)
             return (
                 <View style={styles.popthird}>
                     <View style={{ paddingTop: 30, }}>
