@@ -120,7 +120,7 @@ export default class Isbnsearch extends React.Component {
                         onChangeText={(text) => { this.ISBN = text }}
                         value={this.ISBN}
                     />
-                    <TouchableOpacity style={styles.searchbtn} onPress={this.togglePop.bind(this)}>
+                    <TouchableOpacity style={styles.searchbtn} onPress={this.togglePop}>
                         <IonIcon name="ios-search" size={30} color='#FFF' />
                     </TouchableOpacity>
                 </View>
