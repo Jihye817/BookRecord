@@ -60,8 +60,7 @@ export default class Isbnsearch extends React.Component {
     render() {
         const data = this.state.apiData;
         const today = this.state.currentDate;
-        var dataDisplay = function (jsonData) {
-            console.log(jsonData)
+        var dataDisplay = jsonData.items(function(item) {
             return (
                 <View style={styles.popfirst}>
                     <View style={styles.popsecond}>
@@ -71,14 +70,14 @@ export default class Isbnsearch extends React.Component {
                             </View>
                             <View style={{ paddingTop: 20, }}>
                                 <Image style={{ width: 150, resizeMode: 'contain', }}
-                                    source={{ uri: jsonData.items[0].image }}>
+                                    source={{ uri: item.image }}>
                                 </Image>
                             </View>
                             <View style={{ paddingTop: 10, }}>
-                                <Text style={{ fontSize: 18, }}>{jsonData.items[0].title}</Text>
+                                <Text style={{ fontSize: 18, }}>{item.title}</Text>
                             </View>
                             <View style={{ paddingTop: 10, }}>
-                                <Text style={{ color: '#D7D7D7' }}>{jsonData.items[0].author} | {jsonData.items[0].publisher} | {today}</Text>
+                                <Text style={{ color: '#D7D7D7' }}>{item.author} | {item.publisher} | {today}</Text>
                             </View>
                             <View style={styles.popbtn}>
                                 <View style={{ width: 10, }}></View>
@@ -109,7 +108,7 @@ export default class Isbnsearch extends React.Component {
                     </View>
                 </View>
             )
-        };
+        });
         return (
             <View style={cstyle.greycontainer}>
                 <View style={styles.firstbox}>
