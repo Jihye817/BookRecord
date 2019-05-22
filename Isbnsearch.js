@@ -60,7 +60,7 @@ export default class Isbnsearch extends React.Component {
     render() {
         const data = this.state.apiData;
         const today = this.state.currentDate;
-        var dataDisplay = jsonData.items(function(item) {
+        var dataDisplay = data.items.map(function(item) {
             return (
                 <View style={styles.popfirst}>
                     <View style={styles.popsecond}>
@@ -120,7 +120,7 @@ export default class Isbnsearch extends React.Component {
                         onChangeText={(text) => { this.ISBN = text }}
                         value={this.ISBN}
                     />
-                    <TouchableOpacity style={styles.searchbtn} onPress={this.togglePop}>
+                    <TouchableOpacity style={styles.searchbtn} onPress={this.togglePop.bind(this)}>
                         <IonIcon name="ios-search" size={30} color='#FFF' />
                     </TouchableOpacity>
                 </View>
@@ -130,7 +130,7 @@ export default class Isbnsearch extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <Modal isVisible={this.state.isPopVisible}>
-                    {dataDisplay()}
+                    {dataDisplay}
                 </Modal>
             </View>
         );
