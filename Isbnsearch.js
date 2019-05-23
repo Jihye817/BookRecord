@@ -62,7 +62,7 @@ export default class Isbnsearch extends React.Component {
         const today = this.state.currentDate;
         var dataDisplay = null;
         if (data && data.items) {
-            data.items.map(function (item) {
+            dataDisplay = data.items.map(function (item) {
                 return (
                     <View style={styles.popfirst}>
                         <View style={styles.popsecond}>
