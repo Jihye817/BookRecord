@@ -58,15 +58,15 @@ export default class Isbnsearch extends React.Component {
     }
 
     render() {
-        this.state.apiData = JSON.stringify(this.state.apiData);
         const data = this.state.apiData;
         const today = this.state.currentDate;
         var dataDisplay = null;
         if (data && data.items) {
+            console.log("before datadisplay");
             dataDisplay = data.items.map(function (item) {
                 console.log("before return");
                 return (
-                    <View style={styles.popfirst}>
+                    <View key ={item.user_name} style={styles.popfirst}>
                         <View style={styles.popsecond}>
                             <View style={styles.popthird}>
                                 <View style={{ paddingTop: 30, }}>
@@ -74,14 +74,14 @@ export default class Isbnsearch extends React.Component {
                                 </View>
                                 <View style={{ paddingTop: 20, }}>
                                     <Image style={{ width: 150, resizeMode: 'contain', }}
-                                        source={{ uri: item.image }}>
+                                        source={{ url: item.image.toString() }}>
                                     </Image>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
-                                    <Text style={{ fontSize: 18, }}>{item.title}</Text>
+                                    <Text style={{ fontSize: 18, }}>{item.title.toString()}</Text>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
-                                    <Text style={{ color: '#D7D7D7' }}>{item.author} | {item.publisher} | {today}</Text>
+                                    <Text style={{ color: '#D7D7D7' }}>{item.author.toString()} | {item.publisher.toString()} | {today.toString()}</Text>
                                 </View>
                                 <View style={styles.popbtn}>
                                     <View style={{ width: 10, }}></View>
