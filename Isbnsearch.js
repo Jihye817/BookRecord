@@ -75,7 +75,8 @@ export default class Isbnsearch extends React.Component {
         var dataDisplay = null;
         if (data && data.items) {
             dataDisplay = data.items.map(function (item) {
-                console.log(item.image);
+                var image = "'" + item.image + "'";
+                console.log(image);
                 return (
                     <View key={item.user_name} style={styles.popfirst}>
                         <View style={styles.popsecond}>
@@ -84,8 +85,8 @@ export default class Isbnsearch extends React.Component {
                                     <Text style={{ color: '#52C8B2', fontSize: 20, }}>도서 정보 확인</Text>
                                 </View>
                                 <View style={{ paddingTop: 20, }}>
-                                    <Image style={{ width: 150, resizeMode: 'contain', }}
-                                        source={{ uri:  "'" + item.image + "'" }}>
+                                    <Image style={{ width: 150,  resizeMode: 'contain', }}
+                                        source={{ uri: image}}>
                                     </Image>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
