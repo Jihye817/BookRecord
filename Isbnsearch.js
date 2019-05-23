@@ -19,6 +19,7 @@ export default class Isbnsearch extends React.Component {
             markedDate: moment(new Date()).format(),
             isPopVisible: false,
             apiData: [],
+            activeSwitch: 1,
         }
         this.ISBN = null;
         this.book_name = null;
@@ -34,6 +35,11 @@ export default class Isbnsearch extends React.Component {
     }
 
     togglePop = () => {
+        this.setState({ isPopVisible: !this.state.isPopVisible });
+    }
+
+    searchBook = () => {
+        // popup - onoff
         this.setState({ isPopVisible: !this.state.isPopVisible });
         fetch('http://220.149.242.12:10001/search/book/' + (this.ISBN), {
             method: 'GET'
@@ -57,16 +63,21 @@ export default class Isbnsearch extends React.Component {
         this.best = null;
     }
 
+    saveBook = () => {
+        this.setState({ isPopVisible: !this.state.isPopVisible });
+
+
+    }
+
     render() {
         const data = this.state.apiData;
         const today = this.state.currentDate;
         var dataDisplay = null;
         if (data && data.items) {
-            console.log("before datadisplay");
             dataDisplay = data.items.map(function (item) {
-                console.log("before return");
+                console.log(item.image);
                 return (
-                    <View key ={item.user_name} style={styles.popfirst}>
+                    <View key={item.user_name} style={styles.popfirst}>
                         <View style={styles.popsecond}>
                             <View style={styles.popthird}>
                                 <View style={{ paddingTop: 30, }}>
@@ -74,7 +85,7 @@ export default class Isbnsearch extends React.Component {
                                 </View>
                                 <View style={{ paddingTop: 20, }}>
                                     <Image style={{ width: 150, resizeMode: 'contain', }}
-                                        source={{ uri: "'" +item.image + "'" }}>
+                                        source={{ uri:  item.image }}>
                                     </Image>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
@@ -87,7 +98,7 @@ export default class Isbnsearch extends React.Component {
                                     <View style={{ width: 10, }}></View>
                                     <View style={styles.popbtnleft}>
                                         <SwitchButton
-                                            onValueChange={(val) => this.setState({ activeSwitch: val })}
+                                            onValueChange={(val) => this.activeSwitch(val)} 
                                             text1='읽는 중'
                                             text2='완독'
                                             switchWidth={120}
@@ -106,7 +117,7 @@ export default class Isbnsearch extends React.Component {
                                 </View>
                                 <View style={styles.popbtnbig}>
                                     <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>취소</Text></TouchableOpacity>
-                                    <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>등록하기</Text></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bigbtn} onPress={this.saveBook}><Text style={{ fontSize: 16, color: '#FFF' }}>등록하기</Text></TouchableOpacity>
                                 </View>
                             </View>
                         </View>
@@ -125,7 +136,7 @@ export default class Isbnsearch extends React.Component {
                         onChangeText={(text) => { this.ISBN = text }}
                         value={this.ISBN}
                     />
-                    <TouchableOpacity style={styles.searchbtn} onPress={this.togglePop}>
+                    <TouchableOpacity style={styles.searchbtn} onPress={this.searchBook}>
                         <IonIcon name="ios-search" size={30} color='#FFF' />
                     </TouchableOpacity>
                 </View>
