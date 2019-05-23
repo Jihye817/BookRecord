@@ -93,7 +93,7 @@ export default class Isbnsearch extends React.Component {
                                     <Text style={{ fontSize: 18, }}>{item.title}</Text>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
-                                    <Text style={{ color: '#D7D7D7' }}>{item.author} | {item.publisher} | {today.toString()}</Text>
+                                    <Text style={{ color: '#D7D7D7' }}>{item.author} | {item.publisher} | {item.pubdate}</Text>
                                 </View>
                                 <View style={styles.popbtn}>
                                     <View style={{ width: 10, }}></View>
