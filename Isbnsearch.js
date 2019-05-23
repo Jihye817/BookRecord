@@ -64,6 +64,7 @@ export default class Isbnsearch extends React.Component {
         var dataDisplay = null;
         if (data && data.items) {
             dataDisplay = data.items.map(function (item) {
+                console.log("before return");
                 return (
                     <View style={styles.popfirst}>
                         <View style={styles.popsecond}>
