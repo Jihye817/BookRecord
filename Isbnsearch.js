@@ -74,14 +74,14 @@ export default class Isbnsearch extends React.Component {
                                 </View>
                                 <View style={{ paddingTop: 20, }}>
                                     <Image style={{ width: 150, resizeMode: 'contain', }}
-                                        source={{ url: item.image.toString() }}>
+                                        source={{ uri: "'" +item.image + "'" }}>
                                     </Image>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
-                                    <Text style={{ fontSize: 18, }}>{item.title.toString()}</Text>
+                                    <Text style={{ fontSize: 18, }}>{item.title}</Text>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
-                                    <Text style={{ color: '#D7D7D7' }}>{item.author.toString()} | {item.publisher.toString()} | {today.toString()}</Text>
+                                    <Text style={{ color: '#D7D7D7' }}>{item.author} | {item.publisher} | {today.toString()}</Text>
                                 </View>
                                 <View style={styles.popbtn}>
                                     <View style={{ width: 10, }}></View>
