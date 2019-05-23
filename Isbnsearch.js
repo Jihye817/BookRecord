@@ -58,6 +58,7 @@ export default class Isbnsearch extends React.Component {
     }
 
     render() {
+        this.state.apiData = JSON.stringify(this.state.apiData);
         const data = this.state.apiData;
         const today = this.state.currentDate;
         var dataDisplay = null;
