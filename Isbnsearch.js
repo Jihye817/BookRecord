@@ -41,6 +41,10 @@ export default class Isbnsearch extends React.Component {
     searchBook = () => {
         // popup - onoff
         this.setState({ isPopVisible: !this.state.isPopVisible });
+        if(this.ISBN == null){
+            alert("ISBN코드를 입력해주세요");
+        }
+        else {
         fetch('http://220.149.242.12:10001/search/book/' + (this.ISBN), {
             method: 'GET'
         }).then((responseData) => {
@@ -61,6 +65,7 @@ export default class Isbnsearch extends React.Component {
         this.read_date = null;
         this.category = null;
         this.best = null;
+        };
     }
 
     saveBook = () => {
