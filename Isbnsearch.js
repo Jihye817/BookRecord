@@ -92,8 +92,8 @@ export default class Isbnsearch extends React.Component {
                                 </View>
                                 <View style={{ paddingTop: 20, }}>
                                     <Image style={{ width: 150,  resizeMode: 'contain', }}
-                                        source={{ uri: image}}>
-                                    </Image>
+                                        source={{ uri: image}}
+                                    />
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
                                     <Text style={{ fontSize: 18, }}>{item.title}</Text>
