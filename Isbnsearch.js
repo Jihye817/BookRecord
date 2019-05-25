@@ -80,7 +80,7 @@ export default class Isbnsearch extends React.Component {
         const today = this.state.currentDate;
         var dataDisplay = null;
         if (data && data.items) {
-            dataDisplay = data.items.map(function (item) {
+            dataDisplayr = data.items.map(function (item) {
                 var image = "'" + item.image + "'";
                 console.log(image);
                 return (
