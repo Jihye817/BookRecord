@@ -2,10 +2,53 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
+//import console = require('console');
 
 export default class Bookmain extends React.Component{
+
+    constrcutor(props) {
+        super(props);
+        this.state = {
+            apiData : []
+        }
+        this.ISBN = null;
+        this.book_name = null;
+        this.img_src = null;
+        this.author = null;
+        this.publisher = null;
+        this.public_date = null;
+        this.more_url = null;
+        this.read_rate = null;
+        this.read_date = null;
+        this.category = null;
+        this.best = null;
+    }
+
+    oneBook = () => {
+        fetch('http://220.149.242.12:10001/oneBook/', {
+            method : 'GET'
+        }).then((responseData) => {
+            return responseData.json();
+        }).then((jsonData) => {
+            console.log(jsonData);
+            this.setState({apiData:jsonData})
+            console.log(this.state.apiData)
+        }).done();
+    }
     
     render() {
+        const data = this.state.apiData;
+        var image = null;
+        if(data && data.items) {
+            image = "'" + items.image + "'";    
+        }
+        else {
+            data.items.title = null;
+            data.items.author = null;
+            data.items.publisher = null;
+            data.items.pubdate = null;
+        }
+
         return(
             <View style = {cstyle.whitecontainer}>
                 <View style = {cstyle.middlecontainer}/>
@@ -61,16 +104,16 @@ export default class Bookmain extends React.Component{
                     </View>
                     <View style = {styles.lowbox}>
                         <View style = {styles.imagebox}>
-                            <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                            <Image style = {styles.image} source={{ uri : }}></Image>
                         </View>
                         <View style = {styles.infobox}>
-                            <Text style = {styles.title}>i에게</Text>
+                            <Text style = {styles.title}>{data.items.title}</Text>
                             <View style = {styles.infotexts}>
-                                <Text>김소연</Text>
+                                <Text>{data.items.author}</Text>
                                 <Text> | </Text>
-                                <Text>아침달 시집</Text>
+                                <Text>{data.items.publisher}</Text>
                             </View>
-                            <Text style = {styles.date}>2018-09-10</Text>
+                            <Text style = {styles.date}>{data.items.pubdate}</Text>
                             <TouchableOpacity>
                                 <Text>+ 자세히보기</Text>
                             </TouchableOpacity>
