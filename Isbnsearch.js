@@ -32,28 +32,37 @@ export default class Isbnsearch extends React.Component {
         this.read_date = null;
         this.category = null;
         this.best = null;
+        this.togglePopoff = this.togglePopoff.bind(this);
+        this.saveBook = this.saveBook.bind(this);
     }
 
     togglePop = () => {
-        this.setState({ isPopVisible: !this.state.isPopVisible });
+        //this.setState({ isPopVisible: !this.state.isPopVisible });
+        this.setState({ isPopVisible: true });
+    }
+    togglePopoff(){
+        console.log("working fuction");
+        this.setState({ isPopVisible: false });
     }
 
     searchBook = () => {
+        this.setState({ isPopVisible: true });
         // popup - onoff
-        this.setState({ isPopVisible: !this.state.isPopVisible });
         if(this.ISBN == null){
+            this.setState({ isPopVisible: false});
             alert("ISBN코드를 입력해주세요");
-            return 0;
+            //return 0;
         }
         else {
+            
         fetch('http://220.149.242.12:10001/search/book/' + (this.ISBN), {
             method: 'GET'
         }).then((responseData) => {
             return responseData.json();
         }).then((jsonData) => {
-            console.log(jsonData);
+            //console.log(jsonData);
             this.setState({ apiData: jsonData })
-            console.log(this.state.apiData)
+            //console.log(this.state.apiData)
         }).done();
         this.ISBN = null;
         this.book_name = null;
@@ -69,9 +78,8 @@ export default class Isbnsearch extends React.Component {
         };
     }
 
-    saveBook = () => {
-        this.setState({ isPopVisible: !this.state.isPopVisible });
-
+    saveBook(){
+        this.setState({ isPopVisible: false });
 
     }
 
@@ -79,9 +87,13 @@ export default class Isbnsearch extends React.Component {
         const data = this.state.apiData;
         const today = this.state.currentDate;
         var dataDisplay = null;
+        console.log(data);
+        console.log(data.items);
+        console.log("crazy isnit");
         if (data && data.items) {
-            dataDisplay = data.items.map(function (item) {
-                var image = "'" + item.image + "'";
+            dataDisplay = data.items.map(item => {
+                //var image = "'" + item.image + "'";
+                var image = item.image;
                 console.log(image);
                 return (
                     <View key={item.user_name} style={styles.popfirst}>
@@ -90,13 +102,13 @@ export default class Isbnsearch extends React.Component {
                                 <View style={{ paddingTop: 30, }}>
                                     <Text style={{ color: '#52C8B2', fontSize: 20, }}>도서 정보 확인</Text>
                                 </View>
-                                <View style={{ paddingTop: 20, }}>
-                                    <Image style={{ width: 150,  resizeMode: 'contain', }}
-                                        source={{ uri: image}}>
+                                <View style={{ paddingTop: 10, }}>
+                                    <Image style={{ height: 250, width: 150,  resizeMode: 'contain', }}
+                                        source={{ uri: image }}>
                                     </Image>
                                 </View>
-                                <View style={{ paddingTop: 10, }}>
-                                    <Text style={{ fontSize: 18, }}>{item.title}</Text>
+                                <View style={{ paddingTop: 6, }}>
+                                    <Text ellipsizeMode='tail' numberOfLines={1} style={{ fontSize: 18, }}>{item.title}</Text>
                                 </View>
                                 <View style={{ paddingTop: 10, }}>
                                     <Text style={{ color: '#D7D7D7' }}>{item.author} | {item.publisher} | {item.pubdate}</Text>
@@ -123,8 +135,8 @@ export default class Isbnsearch extends React.Component {
                                     </View>
                                 </View>
                                 <View style={styles.popbtnbig}>
-                                    <TouchableOpacity style={styles.bigbtn} onPress={this.togglePop}><Text style={{ fontSize: 16, color: '#FFF' }}>취소</Text></TouchableOpacity>
-                                    <TouchableOpacity style={styles.bigbtn} onPress={this.saveBook}><Text style={{ fontSize: 16, color: '#FFF' }}>등록하기</Text></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bigbtn} onPress={()=>this.togglePopoff()}><Text style={{ fontSize: 16, color: '#FFF' }}>취소</Text></TouchableOpacity>
+                                    <TouchableOpacity style={styles.bigbtn} onPress={()=>this.saveBook()}><Text style={{ fontSize: 16, color: '#FFF' }}>등록하기</Text></TouchableOpacity>
                                 </View>
                             </View>
                         </View>
@@ -210,12 +222,13 @@ const styles = StyleSheet.create({
     popthird: {
         width: '90%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingBottom:10,
     },
     popbtn: {
         width: '90%',
         flexDirection: 'row',
-        paddingTop: 15,
+        paddingTop: 20,
         justifyContent: 'space-between'
     },
     popbtnleft: {
