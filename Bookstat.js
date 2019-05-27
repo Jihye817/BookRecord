@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image,ImageBackground} from 'react-native';
 import cstyle from './Styles';
+import {withNavigationFocus} from 'react-navigation';
 
-export default class Bookstat extends React.Component{
+class Bookstat extends React.Component{
     render() {
         return(
             <View style = {cstyle.whitecontainer}>
@@ -29,6 +30,8 @@ export default class Bookstat extends React.Component{
         );
     }
 }
+
+export default withNavigationFocus(Bookstat)
 
 const styles = StyleSheet.create({
     firstcontainer: {

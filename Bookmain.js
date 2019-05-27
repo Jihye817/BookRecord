@@ -2,32 +2,44 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
-//import { CustomConsole } from '@jest/console';
-//import console = require('console');
 
-export default class Bookmain extends React.Component{
+import {withNavigationFocus} from 'react-navigation';
 
-    // constrcutor(props) {
-    //     super(props);
-    //     this.state = {
-    //         apiData : []
-    //     }
-    //     this.ISBN = null;
-    //     this.book_name = null;
-    //     this.img_src = null;
-    //     this.author = null;
-    //     this.publisher = null;
-    //     this.public_date = null;
-    //     this.more_url = null;
-    //     this.read_rate = null;
-    //     this.read_date = null;
-    //     this.category = null;
-    //     this.best = null;
-    // }
+var SQLite = require('react-native-sqlite-storage')
+//var db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: '..\android\app\src\main\assets\www\bookDB.db'}, this.openCB, this.errorCB)
 
-    state = { apiData : null };
+class Bookmain extends React.Component{
+    constructor(props){
+        super(props)
 
-    componentDidMount() { // 페이지 랜더링 끝난 후 호출 되는 함수
+        this.state = {
+            booknum: 0,
+            bookpercent:0,
+            apiData : null,
+        };
+    }
+
+    componentDidMount() {
+        var db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: 1}, this.openCB, this.errorCB);
+        db.transaction((tx) => {
+            tx.executeSql('SELECT * FROM readingoal', [], (tx,results) => {
+                var len = results.rows.length;
+                if(len==0)
+                {console.log("LENIS0")}
+                //else
+                //{console.log("ITISNOT0")}
+                //for (let i = 0; i < len; i++) {
+                //    let row = results.rows.item(i);
+                //    console.log(`Book num: ${row.books}`);
+                //}
+                let row = results.rows.item(0);
+                console.log(`Book num: ${row.books}`);
+                this.setState({booknum: row.books});
+                let per = (1 / row.books) * 100;
+                per = per.toFixed(0);
+                this.setState({bookpercent: per });
+            });
+        });
         fetch('http://220.149.242.12:10001/oneBook/', {
             method : 'GET'
         }).then((responseData) => {
@@ -38,7 +50,25 @@ export default class Bookmain extends React.Component{
             console.log(this.state.apiData)
         }).done();
     }
+
+    errorCB(err) {
+        console.log("SQL Error: " + err);
+    }
     
+    successCB() {
+        console.log("SQL executed fine");
+    }
+    
+    openCB() {
+        console.log("Database OPENED");
+    }
+
+    componentDidUpdate (previousProps) {
+        if(!previousProps.isFocused && this.props.isFocused){
+            this.componentDidMount()
+        }
+    }
+
     render() {
         var data = this.state.apiData;
         console.log(data);
@@ -71,16 +101,16 @@ export default class Bookmain extends React.Component{
                                     <View style = {styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>6권</Text>
+                                            <Text style = {styles.pietext}>1권</Text>
                                         </View>
                                     </View>
                                 </View>
                                 <View style = {styles.smallbox}>
                                     <Text style = {styles.smalltext}>달성량</Text>
                                     <View style = {styles.pieview}>
-                                        <Pie radius={40} innerRadius={35} series={[60]} colors={['#FFD966']} backgroundColor='#FFF'/>
+                                        <Pie radius={40} innerRadius={35} series={[this.state.bookpercent]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>60%</Text>
+                                            <Text style = {styles.pietext}>{this.state.bookpercent}%</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -89,7 +119,7 @@ export default class Bookmain extends React.Component{
                                     <View style = {styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF'/>
                                         <View style = {styles.pietextview}>
-                                            <Text style = {styles.pietext}>10권</Text>
+                                            <Text style = {styles.pietext}>{this.state.booknum}권</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -131,6 +161,8 @@ export default class Bookmain extends React.Component{
         );
     }
 }
+
+export default withNavigationFocus(Bookmain)
 
 const styles = StyleSheet.create({
     firstcontainer: {
