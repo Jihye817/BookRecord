@@ -81,6 +81,8 @@ export default class Isbnsearch extends React.Component {
         var dataDisplay = null;
         if (data && data.items) {
             dataDisplay = data.items.map(function (item) {
+                console.log("start");
+                console.log(data.items);
                 var image = "'" + item.image + "'";
                 console.log(image);
                 return (
