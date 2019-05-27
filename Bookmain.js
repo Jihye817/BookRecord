@@ -15,7 +15,7 @@ class Bookmain extends React.Component{
         this.state = {
             booknum: 0,
             bookpercent:0,
-            apiData : null,
+            apiData : {},
         };
     }
 
@@ -50,19 +50,15 @@ class Bookmain extends React.Component{
             console.log(this.state.apiData)
         }).done();
     }
-
     errorCB(err) {
         console.log("SQL Error: " + err);
     }
-    
     successCB() {
         console.log("SQL executed fine");
     }
-    
     openCB() {
         console.log("Database OPENED");
     }
-
     componentDidUpdate (previousProps) {
         if(!previousProps.isFocused && this.props.isFocused){
             this.componentDidMount()
@@ -79,9 +75,8 @@ class Bookmain extends React.Component{
         var pubdate = '';
         if(data) {
             console.log("image : " + data.image);
-            image = "'" + data.image + "'"; 
-            console.log("second image : " + image);
-            title = data[0].title;
+            image = data.image;
+            title = data.title;
             author = data.author;
             publisher = data.publisher;
             pubdate = data.pubdate;
