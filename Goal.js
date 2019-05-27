@@ -5,13 +5,22 @@ import {DrawerActions} from 'react-navigation';
 import cstyle from './Styles';
 import {Header} from 'react-native-elements';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import Modal from 'react-native-modal';
+
+var SQLite = require('react-native-sqlite-storage')
+let db;
 
 export default class Goal extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            value : '0'
-        }
+            value : '0',
+            isPopVisible: false,
+        };
+    }
+
+    togglePop = () => { //모달 toggle
+        this.setState({ isPopVisible : !this.state.isPopVisible});
     }
 
     onSelect(value, label) { //목표권수 select를 위한 함수
@@ -22,6 +31,46 @@ export default class Goal extends React.Component{
         drawerIcon:(
             <IonIcon name='md-flag' size={24} color = '#52C8B2'/>
         )
+    }
+
+    componentDidMount() {
+        db = SQLite.openDatabase({name: 'bookDB.db', createFromLocation: 1}, this.openCB, this.errorCB);
+    }
+
+    errorCB(err) {
+        console.log("SQL Error: " + err);
+    }
+    
+    successCB() {
+        console.log("SQL executed fine");
+    }
+    
+    openCB() {
+        console.log("Database OPENED");
+    }
+
+    onUpdatePress() {
+        const {value} = this.state;
+        if(value === ''){
+            alert("정확한 수를 입력하세요");
+            return;
+        }
+        db.transaction((tx) => {
+            let sql = `SELECT * FROM readingoal WHERE id = 1`;
+            tx.executeSql(sql, [], (tx, results) => {
+                const len = results.rows.length;
+                if(len == 1) {
+                    let sql = `UPDATE readingoal SET books = ${value}`;
+                    tx.executeSql(sql, [], (tx, results) => {
+                        this.togglePop();
+                    });
+                }
+                else{
+                    alert("0보다 큰 수를 입력하세요");
+                    return;
+                }
+            });
+        });
     }
 
     render() {
@@ -52,8 +101,17 @@ export default class Goal extends React.Component{
                 </View>
 
                 <View style = {styles.thirdcontainer}>
-                    <TouchableOpacity style = {styles.greenbtn}><Text style = {styles.btntext}>등록</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.onUpdatePress()}} style = {styles.greenbtn}><Text style = {styles.btntext}>등록</Text></TouchableOpacity>
                 </View>
+
+                <Modal style ={{justifyContent:'center', alignItems: 'center'}} isVisible = {this.state.isPopVisible}>
+                    <View style ={styles.popfirst}>
+                        <View style = {styles.popwhite}>
+                            <Text style = {{fontSize: 16,paddingBottom: 40,}}>변경되었습니다</Text>
+                            <TouchableOpacity onPress = {this.togglePop}><Text style = {{fontSize: 14, color: '#52C8B2'}}>확인</Text></TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
       }
@@ -114,4 +172,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#FFF'
     },
+    popfirst: {
+        backgroundColor:'#FFF',
+        width: 200,
+        height: 150,
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    popwhite: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
 });

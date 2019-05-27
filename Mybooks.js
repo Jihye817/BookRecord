@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image, Picker} from 'react-native';
 import {Select, Option} from 'react-native-chooser';
 import cstyle from './Styles';
+import {withNavigationFocus} from 'react-navigation';
 
-export default class Mybooks extends React.Component{
+class Mybooks extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -89,6 +90,8 @@ export default class Mybooks extends React.Component{
         );
     }
 }
+
+export default withNavigationFocus(Mybooks)
 
 const styles = StyleSheet.create({
     read:{
