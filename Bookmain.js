@@ -2,53 +2,60 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
+//import { CustomConsole } from '@jest/console';
 //import console = require('console');
 
 export default class Bookmain extends React.Component{
 
-    constrcutor(props) {
-        super(props);
-        this.state = {
-            apiData : []
-        }
-        this.ISBN = null;
-        this.book_name = null;
-        this.img_src = null;
-        this.author = null;
-        this.publisher = null;
-        this.public_date = null;
-        this.more_url = null;
-        this.read_rate = null;
-        this.read_date = null;
-        this.category = null;
-        this.best = null;
-    }
+    // constrcutor(props) {
+    //     super(props);
+    //     this.state = {
+    //         apiData : []
+    //     }
+    //     this.ISBN = null;
+    //     this.book_name = null;
+    //     this.img_src = null;
+    //     this.author = null;
+    //     this.publisher = null;
+    //     this.public_date = null;
+    //     this.more_url = null;
+    //     this.read_rate = null;
+    //     this.read_date = null;
+    //     this.category = null;
+    //     this.best = null;
+    // }
 
-    oneBook = () => {
+    state = { apiData : null };
+
+    componentDidMount() { // 페이지 랜더링 끝난 후 호출 되는 함수
         fetch('http://220.149.242.12:10001/oneBook/', {
             method : 'GET'
         }).then((responseData) => {
             return responseData.json();
         }).then((jsonData) => {
-            console.log(jsonData);
+            //console.log(jsonData);
             this.setState({apiData:jsonData})
             console.log(this.state.apiData)
         }).done();
     }
     
     render() {
-        const data = this.state.apiData;
-        var image = null;
-        if(data && data.items) {
-            image = "'" + items.image + "'";    
+        var data = this.state.apiData;
+        console.log(data);
+        var image = 'https://bookthumb-phinf.pstatic.net/cover/113/466/11346623.jpg?type=m5';
+        var title = '';
+        var author = '';
+        var publisher = '';
+        var pubdate = '';
+        if(data) {
+            console.log("image : " + data.image);
+            image = "'" + data.image + "'"; 
+            console.log("second image : " + image);
+            title = data[0].title;
+            author = data.author;
+            publisher = data.publisher;
+            pubdate = data.pubdate;
         }
-        else {
-            data.items.title = null;
-            data.items.author = null;
-            data.items.publisher = null;
-            data.items.pubdate = null;
-        }
-
         return(
             <View style = {cstyle.whitecontainer}>
                 <View style = {cstyle.middlecontainer}/>
@@ -104,16 +111,16 @@ export default class Bookmain extends React.Component{
                     </View>
                     <View style = {styles.lowbox}>
                         <View style = {styles.imagebox}>
-                            <Image style = {styles.image} source={{ uri : }}></Image>
+                            <Image style = {styles.image} source={{ uri : image}}></Image>
                         </View>
                         <View style = {styles.infobox}>
-                            <Text style = {styles.title}>{data.items.title}</Text>
+                            <Text style = {styles.title}>{title}</Text>
                             <View style = {styles.infotexts}>
-                                <Text>{data.items.author}</Text>
+                                <Text>{author}</Text>
                                 <Text> | </Text>
-                                <Text>{data.items.publisher}</Text>
+                                <Text>{publisher}</Text>
                             </View>
-                            <Text style = {styles.date}>{data.items.pubdate}</Text>
+                            <Text style = {styles.date}>{pubdate}</Text>
                             <TouchableOpacity>
                                 <Text>+ 자세히보기</Text>
                             </TouchableOpacity>
