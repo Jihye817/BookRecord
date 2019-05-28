@@ -19,7 +19,9 @@ export default class Isbnsearch extends React.Component {
             markedDate: moment(new Date()).format(),
             isPopVisible: false,
             apiData: [],
+            naData:[],
             activeSwitch: 1,
+            name : 'Ashely',
         }
         this.ISBN = null;
         this.book_name = null;
@@ -54,7 +56,6 @@ export default class Isbnsearch extends React.Component {
             //return 0;
         }
         else {
-            
         fetch('http://220.149.242.12:10001/search/book/' + (this.ISBN), {
             method: 'GET'
         }).then((responseData) => {
@@ -80,7 +81,22 @@ export default class Isbnsearch extends React.Component {
 
     saveBook(){
         this.setState({ isPopVisible: false });
-
+        fetch('http://220.149.242.12:10001/saveBook', {
+            method : 'POST',
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({user_name: this.state.name, ISBN: this.ISBN, read_rate: this.state.val})
+        }).then((responseData) => {
+            return responseData.text();
+        }).then((jsonData) => {
+            this.setState({naData:jsonData})
+            console.log(this.state.naData)
+        }).done();
+        this.state.name = null;
+        this.ISBN = null;
+        this.state.val = 1;
     }
 
     render() {

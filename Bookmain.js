@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
 
@@ -14,9 +14,11 @@ class Bookmain extends React.Component {
 
         this.state = {
             booknum: 0,
-            bookpercent: 0,
             apiData: [],
-            pass: 0,
+            countData : [],
+            pass_one: 0,
+            pass_two: 0,
+            name : 'Ashely',
         };
     }
 
@@ -26,29 +28,31 @@ class Bookmain extends React.Component {
             tx.executeSql('SELECT * FROM readingoal', [], (tx, results) => {
                 var len = results.rows.length;
                 if (len == 0) { console.log("LENIS0") }
-                //else
-                //{console.log("ITISNOT0")}
-                //for (let i = 0; i < len; i++) {
-                //    let row = results.rows.item(i);
-                //    console.log(`Book num: ${row.books}`);
-                //}
                 let row = results.rows.item(0);
                 console.log(`Book num: ${row.books}`);
                 this.setState({ booknum: row.books });
-                let per = (1 / row.books) * 100;
-                per = per.toFixed(0);
-                this.setState({ bookpercent: per });
             });
         });
         fetch('http://220.149.242.12:10001/oneBook/', {
             method: 'GET'
-        }).then((responseData) => {
-            return responseData.json();
-        }).then((jsonData) => {
-            //console.log(jsonData);
-            this.setState({ apiData: jsonData })
-            this.setState({ pass: 1 })
+        }).then((responseData1) => {
+            return responseData1.json();
+        }).then((jsonData1) => {
+            //console.log(jsonData1);
+            this.setState({ apiData: jsonData1 })
+            this.setState({ pass_one: 1 })
             console.log(this.state.apiData)
+        }).done();
+        fetch('http://220.149.242.12:10001/readBook/'+(this.state.name), {
+            method: 'GET'
+        }).then((responseData2) => {
+            return responseData2.json();
+        }).then((jsonData2) => {
+            //console.log(jsonData2);
+            console.log("start fetch");
+            this.setState({ countData: jsonData2})
+            this.setState({ pass_two : 1})
+            console.log(this.state.countData)
         }).done();
     }
     errorCB(err) {
@@ -68,13 +72,14 @@ class Bookmain extends React.Component {
 
     render() {
         var data = this.state.apiData;
-        console.log("first data");
-        console.log(data);
-        console.log("second data");
-        //console.log(Array.isArray(data[0]));
-        console.log(data[0]);
-        if (this.state.pass) {
-            console.log("image : " + data[0].img_src);
+        var count_data = this.state.countData;
+        var book_expect = this.state.booknum;
+        // console.log("first data");
+        // console.log(data);
+        // console.log("second data");
+        // console.log(Array.isArray(data[0]));
+        // console.log(data[0]);
+        if (this.state.pass_one && this.state.pass_two) {
             image = data[0].img_src;
             //temp = data[0].img_src;
             //image = "\'" + temp + "\'";
@@ -83,6 +88,10 @@ class Bookmain extends React.Component {
             publisher = data[0].publisher;
             pubdate = data[0].public_date;
             real_pubdate = pubdate.substring(0,10);
+            link_url = data[0].more_url;
+            bookread = count_data[0].month_count;
+            bookpercent = (bookread / book_expect)*100
+            bookpercent = bookpercent.toFixed(0);
         }
         else {
             var image = "https://bookthumb-phinf.pstatic.net/cover/113/466/11346623.jpg?type=m5";
@@ -91,6 +100,9 @@ class Bookmain extends React.Component {
             var publisher = '';
             var pubdate = '';
             var real_pubdate = '';
+            var link_url = '';
+            var bookpercent = 1;
+            var bookread = 0;
         }
         return (
             <View style={cstyle.whitecontainer}>
@@ -107,16 +119,16 @@ class Bookmain extends React.Component {
                                     <View style={styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF' />
                                         <View style={styles.pietextview}>
-                                            <Text style={styles.pietext}>1권</Text>
+                                            <Text style={styles.pietext}>{bookread}</Text>
                                         </View>
                                     </View>
                                 </View>
                                 <View style={styles.smallbox}>
                                     <Text style={styles.smalltext}>달성량</Text>
                                     <View style={styles.pieview}>
-                                        <Pie radius={40} innerRadius={35} series={[this.state.bookpercent]} colors={['#FFD966']} backgroundColor='#FFF' />
+                                        <Pie radius={40} innerRadius={35} series={[bookpercent]} colors={['#FFD966']} backgroundColor='#FFF' />
                                         <View style={styles.pietextview}>
-                                            <Text style={styles.pietext}>{this.state.bookpercent}%</Text>
+                                            <Text style={styles.pietext}>{bookpercent}%</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -158,7 +170,7 @@ class Bookmain extends React.Component {
                             </View>
                             <Text style={styles.date}>{real_pubdate}</Text>
                             <TouchableOpacity>
-                                <Text>+ 자세히보기</Text>
+                                <Text onPress={() => { Linking.openURL(link_url);}}>+ 자세히보기</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
