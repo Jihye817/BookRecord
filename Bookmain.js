@@ -89,6 +89,7 @@ class Bookmain extends React.Component {
             link_url = data[0].more_url;
             bookread = count_data[0].month_count;
             bookpercent = (bookread / book_expect)*100
+            bookpercent = bookpercent.toFixed(0);
         }
         else {
             var image = "https://bookthumb-phinf.pstatic.net/cover/113/466/11346623.jpg?type=m5";
