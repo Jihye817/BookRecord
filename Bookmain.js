@@ -75,7 +75,8 @@ class Bookmain extends React.Component {
         console.log(data[0]);
         if (this.state.pass) {
             console.log("image : " + data[0].img_src);
-            image = data[0].img_src;
+            temp = data[0].img_src;
+            image = "\'" + temp + "\'";
             title = data[0].book_name;
             author = data[0].author;
             publisher = data[0].publisher;
@@ -148,7 +149,7 @@ class Bookmain extends React.Component {
                             <Image style={styles.image} source={{ uri: image }}></Image>
                         </View>
                         <View style={styles.infobox}>
-                            <Text style={styles.title}>{title}</Text>
+                            <Text ellipsizeMode='tail' numberOfLines={1} style={styles.title}>{title}</Text>
                             <View style={styles.infotexts}>
                                 <Text>{author}</Text>
                                 <Text> | </Text>
@@ -283,19 +284,23 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '60%',
+        borderWidth:1,
+        borderColor:'#000',
         resizeMode: 'contain',
         alignItems: 'center',
         justifyContent: 'center',
     },
     infobox: {
         width: '55%',
-        justifyContent: 'center',
+        alignItems:'flex-start',
+        justifyContent: 'flex-start',
+        paddingTop:20,
     },
     infotexts: {
         flexDirection: 'row',
     },
     title: {
-        fontSize: 20,
+        fontSize: 18,
         paddingBottom: 10,
     },
     date: {
