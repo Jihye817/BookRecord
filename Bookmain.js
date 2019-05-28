@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
 import cstyle from './Styles';
 import Pie from 'react-native-pie';
 
@@ -14,11 +14,11 @@ class Bookmain extends React.Component {
 
         this.state = {
             booknum: 0,
-            bookpercent: 0,
             apiData: [],
             countData : [],
             pass_one: 0,
             pass_two: 0,
+            name : 'Ashely',
         };
     }
 
@@ -31,9 +31,6 @@ class Bookmain extends React.Component {
                 let row = results.rows.item(0);
                 console.log(`Book num: ${row.books}`);
                 this.setState({ booknum: row.books });
-                let per = (1 / row.books) * 100;
-                per = per.toFixed(0);
-                this.setState({ bookpercent: per });
             });
         });
         fetch('http://220.149.242.12:10001/oneBook/', {
@@ -46,7 +43,7 @@ class Bookmain extends React.Component {
             this.setState({ pass_one: 1 })
             console.log(this.state.apiData)
         }).done();
-        fetch('http://220.149.242.12:10001/readBook/', {
+        fetch('http://220.149.242.12:10001/readBook/'+(this.state.name), {
             method: 'GET'
         }).then((responseData2) => {
             return responseData2.json();
@@ -88,6 +85,7 @@ class Bookmain extends React.Component {
             publisher = data[0].publisher;
             pubdate = data[0].public_date;
             real_pubdate = pubdate.substring(0,10);
+            link_url = data[0].more_url;
         }
         else {
             var image = "https://bookthumb-phinf.pstatic.net/cover/113/466/11346623.jpg?type=m5";
@@ -96,7 +94,9 @@ class Bookmain extends React.Component {
             var publisher = '';
             var pubdate = '';
             var real_pubdate = '';
-            var 
+            var link_url = '';
+            var bookpercent = 1;
+            var bookread = 0;
         }
         return (
             <View style={cstyle.whitecontainer}>
@@ -113,7 +113,7 @@ class Bookmain extends React.Component {
                                     <View style={styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[0]} colors={['#FFD966']} backgroundColor='#FFF' />
                                         <View style={styles.pietextview}>
-                                            <Text style={styles.pietext}>1권</Text>
+                                            <Text style={styles.pietext}>{bookread}</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -122,7 +122,7 @@ class Bookmain extends React.Component {
                                     <View style={styles.pieview}>
                                         <Pie radius={40} innerRadius={35} series={[this.state.bookpercent]} colors={['#FFD966']} backgroundColor='#FFF' />
                                         <View style={styles.pietextview}>
-                                            <Text style={styles.pietext}>{this.state.bookpercent}%</Text>
+                                            <Text style={styles.pietext}>{bookpercent}%</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -148,7 +148,7 @@ class Bookmain extends React.Component {
                             <Text style={styles.leftgreytext}>하루한권 추천도서</Text>
                         </View>
                         <TouchableOpacity style={styles.rightbox}>
-                            <Text style={styles.greentext}>추천도서 더보기 ▶</Text>
+                            <Text style={styles.greentext} onPress={() => { Linking.openURL(link_url);}}>추천도서 더보기 ▶</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.lowbox}>
