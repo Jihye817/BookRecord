@@ -16,7 +16,9 @@ class Bookmain extends React.Component {
             booknum: 0,
             bookpercent: 0,
             apiData: [],
-            pass: 0,
+            countData : [],
+            pass_one: 0,
+            pass_two: 0,
         };
     }
 
@@ -26,12 +28,6 @@ class Bookmain extends React.Component {
             tx.executeSql('SELECT * FROM readingoal', [], (tx, results) => {
                 var len = results.rows.length;
                 if (len == 0) { console.log("LENIS0") }
-                //else
-                //{console.log("ITISNOT0")}
-                //for (let i = 0; i < len; i++) {
-                //    let row = results.rows.item(i);
-                //    console.log(`Book num: ${row.books}`);
-                //}
                 let row = results.rows.item(0);
                 console.log(`Book num: ${row.books}`);
                 this.setState({ booknum: row.books });
@@ -42,13 +38,24 @@ class Bookmain extends React.Component {
         });
         fetch('http://220.149.242.12:10001/oneBook/', {
             method: 'GET'
-        }).then((responseData) => {
-            return responseData.json();
-        }).then((jsonData) => {
-            //console.log(jsonData);
-            this.setState({ apiData: jsonData })
-            this.setState({ pass: 1 })
+        }).then((responseData1) => {
+            return responseData1.json();
+        }).then((jsonData1) => {
+            //console.log(jsonData1);
+            this.setState({ apiData: jsonData1 })
+            this.setState({ pass_one: 1 })
             console.log(this.state.apiData)
+        }).done();
+        fetch('http://220.149.242.12:10001/readBook/', {
+            method: 'GET'
+        }).then((responseData2) => {
+            return responseData2.json();
+        }).then((jsonData2) => {
+            //console.log(jsonData2);
+            console.log("start fetch");
+            this.setState({ countData: jsonData2})
+            this.setState({ pass_two : 1})
+            console.log(this.state.countData)
         }).done();
     }
     errorCB(err) {
@@ -68,15 +75,14 @@ class Bookmain extends React.Component {
 
     render() {
         var data = this.state.apiData;
-        console.log("first data");
-        console.log(data);
-        console.log("second data");
-        //console.log(Array.isArray(data[0]));
-        console.log(data[0]);
-        if (this.state.pass) {
-            console.log("image : " + data[0].img_src);
-            temp = data[0].img_src;
-            image = "\'" + temp + "\'";
+        var count_data = this.state.countData;
+        // console.log("first data");
+        // console.log(data);
+        // console.log("second data");
+        // console.log(Array.isArray(data[0]));
+        // console.log(data[0]);
+        if (this.state.pass_one && this.state.pass_two) {
+            image = data[0].img_src;
             title = data[0].book_name;
             author = data[0].author;
             publisher = data[0].publisher;
@@ -90,6 +96,7 @@ class Bookmain extends React.Component {
             var publisher = '';
             var pubdate = '';
             var real_pubdate = '';
+            var 
         }
         return (
             <View style={cstyle.whitecontainer}>
