@@ -73,6 +73,7 @@ class Bookmain extends React.Component {
     render() {
         var data = this.state.apiData;
         var count_data = this.state.countData;
+        var book_expect = this.state.booknum;
         // console.log("first data");
         // console.log(data);
         // console.log("second data");
@@ -86,6 +87,8 @@ class Bookmain extends React.Component {
             pubdate = data[0].public_date;
             real_pubdate = pubdate.substring(0,10);
             link_url = data[0].more_url;
+            bookread = count_data[0].month.count;
+            bookpercent = (bookread / book_expect)*100
         }
         else {
             var image = "https://bookthumb-phinf.pstatic.net/cover/113/466/11346623.jpg?type=m5";
@@ -120,7 +123,7 @@ class Bookmain extends React.Component {
                                 <View style={styles.smallbox}>
                                     <Text style={styles.smalltext}>달성량</Text>
                                     <View style={styles.pieview}>
-                                        <Pie radius={40} innerRadius={35} series={[this.state.bookpercent]} colors={['#FFD966']} backgroundColor='#FFF' />
+                                        <Pie radius={40} innerRadius={35} series={[bookpercent]} colors={['#FFD966']} backgroundColor='#FFF' />
                                         <View style={styles.pietextview}>
                                             <Text style={styles.pietext}>{bookpercent}%</Text>
                                         </View>
