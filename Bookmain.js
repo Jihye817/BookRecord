@@ -151,7 +151,7 @@ class Bookmain extends React.Component {
                             <Text style={styles.leftgreytext}>하루한권 추천도서</Text>
                         </View>
                         <TouchableOpacity style={styles.rightbox}>
-                            <Text style={styles.greentext} onPress={() => { Linking.openURL(link_url);}}>추천도서 더보기 ▶</Text>
+                            <Text style={styles.greentext}>추천도서 더보기 ▶</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.lowbox}>
@@ -167,7 +167,7 @@ class Bookmain extends React.Component {
                             </View>
                             <Text style={styles.date}>{real_pubdate}</Text>
                             <TouchableOpacity>
-                                <Text>+ 자세히보기</Text>
+                                <Text onPress={() => { Linking.openURL(link_url);}}>+ 자세히보기</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -293,7 +293,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        width: '60%',
+        width:120,
+        height:160,
         borderWidth:1,
         borderColor:'#000',
         resizeMode: 'contain',
