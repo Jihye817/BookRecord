@@ -75,8 +75,9 @@ class Bookmain extends React.Component {
         console.log(data[0]);
         if (this.state.pass) {
             console.log("image : " + data[0].img_src);
-            temp = data[0].img_src;
-            image = "\'" + temp + "\'";
+            image = data[0].img_src;
+            //temp = data[0].img_src;
+            //image = "\'" + temp + "\'";
             title = data[0].book_name;
             author = data[0].author;
             publisher = data[0].publisher;
@@ -283,7 +284,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     image: {
-        width: '60%',
+        width:120,
+        height:160,
         borderWidth:1,
         borderColor:'#000',
         resizeMode: 'contain',
