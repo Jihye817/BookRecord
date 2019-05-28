@@ -87,7 +87,7 @@ class Bookmain extends React.Component {
             pubdate = data[0].public_date;
             real_pubdate = pubdate.substring(0,10);
             link_url = data[0].more_url;
-            bookread = count_data[0].month.count;
+            bookread = count_data[0].month_count;
             bookpercent = (bookread / book_expect)*100
         }
         else {
