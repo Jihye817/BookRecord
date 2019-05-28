@@ -117,7 +117,7 @@ export default class Isbnsearch extends React.Component {
                                     <View style={{ width: 10, }}></View>
                                     <View style={styles.popbtnleft}>
                                         <SwitchButton
-                                            onValueChange={(val) => this.activeSwitch(val)} 
+                                            onValueChange={(val) => this.setState({activeSwitch: val})} 
                                             text1='읽는 중'
                                             text2='완독'
                                             switchWidth={120}
