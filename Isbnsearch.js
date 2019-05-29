@@ -65,7 +65,7 @@ export default class Isbnsearch extends React.Component {
             this.setState({ apiData: jsonData })
             //console.log(this.state.apiData)
         }).done();
-        this.ISBN = null;
+        //this.ISBN = null;
         this.book_name = null;
         this.img_src = null;
         this.author = null;
@@ -94,7 +94,7 @@ export default class Isbnsearch extends React.Component {
             this.setState({naData:jsonData})
             console.log(this.state.naData)
         }).done();
-        this.state.name = null;
+        //this.state.name = null;
         this.ISBN = null;
         this.state.val = 1;
     }
