@@ -50,16 +50,6 @@ class Mybooks extends React.Component{
                         </Select>
                         </View>
 
-                        <View style = {styles.pickerstyle1}>
-                        <Select onSelect3 = {this.onSelect3.bind(this)}
-                            defaultText = {this.state.value3}
-                            style = {styles.pickerstyle}
-                            optionListStyle = {styles.pickeroptionstyle}>
-                            <Option value = "읽는중">읽는중</Option>
-                            <Option value = "완독">완독</Option>
-                        </Select>
-                        </View>
-
                         <TouchableOpacity style = {styles.greenbtn}>
                             <Text style = {{color:'#FFF'}}>검색</Text>
                         </TouchableOpacity>
@@ -118,7 +108,7 @@ const styles = StyleSheet.create({
     },
     pickerstyle1: {
         height: 30,
-        width: '20%',
+        width: '35%',
         backgroundColor: '#FFF',
         color:'#333',
         borderWidth:1,
@@ -198,4 +188,14 @@ const styles = StyleSheet.create({
                             <TouchableOpacity style = {styles.read}>
                                 <Text style = {{color:'#FFF'}}>완독</Text>
                             </TouchableOpacity>
+
+                                                    <View style = {styles.pickerstyle1}>
+                        <Select onSelect3 = {this.onSelect3.bind(this)}
+                            defaultText = {this.state.value3}
+                            style = {styles.pickerstyle}
+                            optionListStyle = {styles.pickeroptionstyle}>
+                            <Option value = "읽는중">읽는중</Option>
+                            <Option value = "완독">완독</Option>
+                        </Select>
+                        </View>
 */
