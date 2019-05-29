@@ -65,7 +65,7 @@ export default class Isbnsearch extends React.Component {
             this.setState({ apiData: jsonData })
             //console.log(this.state.apiData)
         }).done();
-        this.ISBN = null;
+        //this.ISBN = null;
         this.book_name = null;
         this.img_src = null;
         this.author = null;
@@ -94,7 +94,7 @@ export default class Isbnsearch extends React.Component {
             this.setState({naData:jsonData})
             console.log(this.state.naData)
         }).done();
-        this.state.name = null;
+        //this.state.name = null;
         this.ISBN = null;
         this.state.val = 1;
     }
@@ -132,22 +132,7 @@ export default class Isbnsearch extends React.Component {
                                 <View style={styles.popbtn}>
                                     <View style={{ width: 10, }}></View>
                                     <View style={styles.popbtnleft}>
-                                        <SwitchButton
-                                            onValueChange={(val) => this.setState({activeSwitch: val})} 
-                                            text1='읽는 중'
-                                            text2='완독'
-                                            switchWidth={120}
-                                            switchHeight={30}
-                                            switchdirection='ltr'
-                                            switchBorderRadius={0}
-                                            switchSpeedChange={500}
-                                            switchBorderColor='#52C8B2'
-                                            switchBackgroundColor='#F2F2F2'
-                                            btnBorderColor='#52C8B2'
-                                            btnBackgroundColor='#52C8B2'
-                                            fontcolor='#333'
-                                            activeFontColor='#FFF'
-                                        />
+                                        
                                     </View>
                                 </View>
                                 <View style={styles.popbtnbig}>
@@ -274,3 +259,21 @@ const styles = StyleSheet.create({
     },
 
 })
+/*
+                                        <SwitchButton
+                                            onValueChange={(val) => this.setState({activeSwitch: val})} 
+                                            text1='읽는 중'
+                                            text2='완독'
+                                            switchWidth={120}
+                                            switchHeight={30}
+                                            switchdirection='ltr'
+                                            switchBorderRadius={0}
+                                            switchSpeedChange={500}
+                                            switchBorderColor='#52C8B2'
+                                            switchBackgroundColor='#F2F2F2'
+                                            btnBorderColor='#52C8B2'
+                                            btnBackgroundColor='#52C8B2'
+                                            fontcolor='#333'
+                                            activeFontColor='#FFF'
+                                        />
+*/
