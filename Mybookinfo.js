@@ -21,10 +21,6 @@ export default class Mybookinfo extends React.Component{
                             <View style = {styles.infotext}>
                                 <View style = {styles.textone}>
                                     <Text style = {styles.textitle}>i에게</Text>
-                                    <View style = {{flexDirection: 'row', width: 150, justifyContent: 'space-between'}}>
-                                        <TouchableOpacity style ={styles.button}><Text>읽는중</Text></TouchableOpacity>
-                                        <TouchableOpacity style ={styles.button}><Text>완독</Text></TouchableOpacity>
-                                    </View>
                                 </View>
                                 <Text style = {styles.textinfos}>김소연 | 아침달 시집 | 2018-09-10</Text>
                                 <TouchableOpacity style = {styles.more}><Text>더보기 +</Text></TouchableOpacity>
@@ -107,3 +103,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 })
+/*
+
+                                    <View style = {{flexDirection: 'row', width: 150, justifyContent: 'space-between'}}>
+                                        <TouchableOpacity style ={styles.button}><Text>읽는중</Text></TouchableOpacity>
+                                        <TouchableOpacity style ={styles.button}><Text>완독</Text></TouchableOpacity>
+                                    </View>
+*/

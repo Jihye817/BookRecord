@@ -68,9 +68,6 @@ class Mybooks extends React.Component{
                 <View style = {styles.secondcontainer}>
                     <TouchableOpacity style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
                         <View style = {styles.bookinfobox}>
-                            <TouchableOpacity style = {styles.read}>
-                                <Text style = {{color:'#FFF'}}>완독</Text>
-                            </TouchableOpacity>
                             <View style = {styles.infodate}>
                                 <Text>3/22</Text>
                             </View>
@@ -195,3 +192,10 @@ const styles = StyleSheet.create({
         color:'#B2B2B2'
     },
 })
+
+/*
+
+                            <TouchableOpacity style = {styles.read}>
+                                <Text style = {{color:'#FFF'}}>완독</Text>
+                            </TouchableOpacity>
+*/
