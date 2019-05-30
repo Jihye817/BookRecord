@@ -44,94 +44,92 @@ export default class Mystat extends React.Component{
         }
     }
 
-    returnCate(cate) {
-        var category = cate;
-        switch (category) {
-            case 2:
-                return "소설";
-            case 3:
-                return "시/에세이";
-            case 4:
-                return "경제/경영";
-            case 5:
-                return "자기계발";
-            case 6:
-                return "인문";
-            case 7:
-                return "역사/문화";
-            case 8:
-                return "국어/외국어";
-            case 9:
-                return "가정/생활/요리";
-            case 10:
-                return "청소년";
-            case 11:
-                return "사회";
-            case 12:
-                return "여행/지도";
-            case 13:
-                return "과학/공학";
-            case 14:
-                return "예술/대중문화";
-            case 15:
-                return "컴퓨터/IT";
-            case 16:
-                return "종교";
-            case 17:
-                return "학습/참고서";
-            case 18:
-                return "취업/수험서";
-            case 19:
-                return "건강";
-            case 20:
-                return "취미/레저";
-            case 21:
-                return "사전";
-            case 22:
-                return "만화";
-            case 23:
-                return "잡지";
-            case 24:
-                return "해외도서";
-            case 25:
-                return "유아";
-            case 26:
-                return "어린이";
-            default:
-                return 1;
-        }
-    }
-
     onSelect(value, label) { //년도 select를 위한 함수
         this.setState({value : value})
     }
 
     componentDidMount() {
 
-        fetch('http://220.149.242.12:10001/statCategory/',{
+        fetch('http://220.149.242.12:10001/statCategory/'+(this.state.name),{
             method: 'GET'
             }).then((responseData1) => {
                 return responseData1.json();
             }).then((jsonData1) => {
                 //console.log(jsonData1);
                 this.setState({ cateData : jsonData1 })
-                this.setState({pass_one:1})
+                this.setState({ pass_one : 1 })
                 console.log(this.state.cateData)
             }).done();
     }
 
     render() {
         var catedata = this.state.cateData;
+        var category = ['sample', 'sample', 'sample'];
+        var cateCount = [0,0,0];
         if(this.state.pass_one) {
-            console.log("hello fetch finish");
-            for (i = 0; i++; i<3){
-                category[i] = returnCate(catedata[i].category);
-                cateCount[i] = catedata[i].ca_count;
+            function returnCate(cate) {
+                var category = cate;
+                switch (category) {
+                    case 2:
+                        return "소설";
+                    case 3:
+                        return "시/에세이";
+                    case 4:
+                        return "경제/경영";
+                    case 5:
+                        return "자기계발";
+                    case 6:
+                        return "인문";
+                    case 7:
+                        return "역사/문화";
+                    case 8:
+                        return "국어/외국어";
+                    case 9:
+                        return "가정/생활/요리";
+                    case 10:
+                        return "청소년";
+                    case 11:
+                        return "사회";
+                    case 12:
+                        return "여행/지도";
+                    case 13:
+                        return "과학/공학";
+                    case 14:
+                        return "예술/대중문화";
+                    case 15:
+                        return "컴퓨터/IT";
+                    case 16:
+                        return "종교";
+                    case 17:
+                        return "학습/참고서";
+                    case 18:
+                        return "취업/수험서";
+                    case 19:
+                        return "건강";
+                    case 20:
+                        return "취미/레저";
+                    case 21:
+                        return "사전";
+                    case 22:
+                        return "만화";
+                    case 23:
+                        return "잡지";
+                    case 24:
+                        return "해외도서";
+                    case 25:
+                        return "유아";
+                    case 26:
+                        return "어린이";
+                    default:
+                        return "미정";
+                }
             }
-        }
-        else {
-            var category = ['','',''];
-            var cateCount = [0,0,0];
+            category[0] = returnCate(catedata[0].category);
+            cateCount[0] = catedata[0].ca_count;
+            category[1] = returnCate(catedata[1].category);
+            cateCount[1] = catedata[1].ca_count;
+            category[2] = returnCate(catedata[2].category);
+            cateCount[2] = catedata[2].ca_count;
         }
         return (
             <View style = {cstyle.whitecontainer}>
@@ -161,7 +159,7 @@ export default class Mystat extends React.Component{
                     <View style = {styles.greencontainer}>
                         <View style = {styles.inbox}>
                             <View style = {{paddingLeft:10,}}/>
-                            <Text style = {styles.yellowtext}>박밀레</Text>
+                            <Text style = {styles.yellowtext}>{this.state.name}</Text>
                             <Text style = {styles.whitetext}> 님의 선호분야</Text>
                         </View>
                         
