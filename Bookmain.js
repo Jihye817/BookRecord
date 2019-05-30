@@ -33,6 +33,7 @@ class Bookmain extends React.Component {
                 this.setState({ booknum: row.books });
             });
         });
+        // 하루한권 main 추천도서 fetch
         fetch('http://220.149.242.12:10001/oneBook/', {
             method: 'GET'
         }).then((responseData1) => {
@@ -43,6 +44,7 @@ class Bookmain extends React.Component {
             this.setState({ pass_one: 1 })
             console.log(this.state.apiData)
         }).done();
+        // 읽은 책 수 main count fetch
         fetch('http://220.149.242.12:10001/readBook/'+(this.state.name), {
             method: 'GET'
         }).then((responseData2) => {

@@ -4,6 +4,7 @@ import {Select, Option} from 'react-native-chooser';
 import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import LineChart from 'react-native-responsive-linechart';
+//import console = require('console');
 
 var data = [0,0,0,0,0,0,0,0,0,0,0,0];
 const labels = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
@@ -109,11 +110,29 @@ export default class Mystat extends React.Component{
 
         fetch('http://220.149.242.12:10001/statCategory',{
             method: 'GET'
-            }),
-            
+            }).then((responseData1) => {
+                return responseData1.json();
+            }).then((jsonData1) => {
+                //console.log(jsonData1);
+                this.setState({ cateData : jsonData1 })
+                this.setState({pass_one:1})
+                console.log(this.state.cateData)
+            }).done();
     }
 
     render() {
+        var catedata = this.state.cateData;
+        if(this.state.pass_one) {
+            console.log("hello fetch finish");
+            for (i = 0; i++; i<3){
+                category[i] = returnCate(catedata[i].category);
+                cateCount[i] = catedata[i].ca_count;
+            }
+        }
+        else {
+            var category = ['','',''];
+            var cateCount = [0,0,0];
+        }
         return (
             <View style = {cstyle.whitecontainer}>
                 <View style = {styles.wholecontainer}>
@@ -154,8 +173,8 @@ export default class Mystat extends React.Component{
                                 <IonIcon name = "ios-paper" size={40} color='#52C8B2' />
                             </View>
                             <View style = {styles.rightbox}>
-                                <Text style = {styles.greytext}>인문</Text>
-                                <View style = {styles.textbox}><Text style = {styles.greentext}>7권</Text></View>
+                                <Text style = {styles.greytext}>{category[0]}</Text>
+                                <View style = {styles.textbox}><Text style = {styles.greentext}>{cateCount[0]}권</Text></View>
                             </View>
                         </View>
                     </View>
@@ -165,8 +184,8 @@ export default class Mystat extends React.Component{
                                 <IonIcon name = "ios-map" size={40} color='#52C8B2' />
                             </View>
                             <View style = {styles.rightbox}>
-                                <Text style = {styles.greytext}>역사/  문화</Text>
-                                <View style = {styles.textbox}><Text style = {styles.greentext}>5권</Text></View>
+                                <Text style = {styles.greytext}>{category[1]}</Text>
+                                <View style = {styles.textbox}><Text style = {styles.greentext}>{cateCount[1]}권</Text></View>
                             </View>
                         </View>
                     </View>
@@ -176,8 +195,8 @@ export default class Mystat extends React.Component{
                                 <IonIcon name = "ios-flask" size={40} color='#52C8B2' />
                             </View>
                             <View style = {styles.rightbox}>
-                                <Text style = {styles.greytext}>과학 / 공학</Text>
-                                <View style = {styles.textbox}><Text style = {styles.greentext}>2권</Text></View>
+                                <Text style = {styles.greytext}>{category[2]}</Text>
+                                <View style = {styles.textbox}><Text style = {styles.greentext}>{cateCount[2]}권</Text></View>
                             </View>
                         </View>
                     </View>
