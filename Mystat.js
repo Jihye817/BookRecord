@@ -108,7 +108,7 @@ export default class Mystat extends React.Component{
 
     componentDidMount() {
 
-        fetch('http://220.149.242.12:10001/statCategory',{
+        fetch('http://220.149.242.12:10001/statCategory/',{
             method: 'GET'
             }).then((responseData1) => {
                 return responseData1.json();
