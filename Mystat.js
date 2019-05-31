@@ -49,7 +49,21 @@ export default class Mystat extends React.Component{
     }
 
     componentDidMount() {
-
+        
+        fetch('http://220.149.242.12:10001/statMonthly/', {
+            method: 'POST',
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({user_name : this.state.name, year : this.state.value})
+        }).then((responseData2) => {
+            return responseData2.text();
+        }).then((jsonData2) => {
+            this.setState({monthData : jsonData2})
+            this.setState({ pass_two : 1 })
+            console.log(this.state.monthData)
+        }).done();
         fetch('http://220.149.242.12:10001/statCategory/'+(this.state.name),{
             method: 'GET'
             }).then((responseData1) => {
@@ -66,7 +80,15 @@ export default class Mystat extends React.Component{
         var catedata = this.state.cateData;
         var category = ['sample', 'sample', 'sample'];
         var cateCount = [0,0,0];
-        if(this.state.pass_one) {
+        var monthData = this.state.monthData;
+        if(this.state.pass_one && this.state.pass_two) {
+            //update 필요
+            data[0] = monthData[0].month_count;
+            data[1] = monthData[1].month_count;
+            data[2] = monthData[2].month_count;
+            data[3] = monthData[3].month_count;
+            data[4] = monthData[4].month_count;
+            data[5] = monthData[5].month_count;
             function returnCate(cate) {
                 var category = cate;
                 switch (category) {
