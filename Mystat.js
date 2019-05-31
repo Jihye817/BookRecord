@@ -82,6 +82,10 @@ export default class Mystat extends React.Component{
         var cateCount = [0,0,0];
         var monthData = this.state.monthData;
         if(this.state.pass_one && this.state.pass_two) {
+            console.log("start");
+            console.log(monthData[1]);
+            console.log("hello");
+            console.log(data);
             //update 필요
             data[0] = monthData[0].month_count;
             data[1] = monthData[1].month_count;
