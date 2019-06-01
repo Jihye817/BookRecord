@@ -61,9 +61,12 @@ export default class Mystat extends React.Component{
             return responseData2.text();
         }).then((jsonData2) => {
             this.setState({monthData : jsonData2})
-            this.setState({ pass_two : 1 })
             console.log(this.state.monthData)
-        }).done();
+            console.log(this.state.monthData[2])
+        }).then((monthData) => {
+            console.log("pass_two : 1");
+            this.setState({ pass_two : 1 });
+        }).done()
         fetch('http://220.149.242.12:10001/statCategory/'+(this.state.name),{
             method: 'GET'
             }).then((responseData1) => {
@@ -71,28 +74,29 @@ export default class Mystat extends React.Component{
             }).then((jsonData1) => {
                 //console.log(jsonData1);
                 this.setState({ cateData : jsonData1 })
+                console.log("pass_one : 1")
                 this.setState({ pass_one : 1 })
                 console.log(this.state.cateData)
             }).done();
     }
 
     render() {
+        var monthlyData = this.state.monthData;
         var catedata = this.state.cateData;
         var category = ['sample', 'sample', 'sample'];
         var cateCount = [0,0,0];
-        var monthData = this.state.monthData;
         if(this.state.pass_one && this.state.pass_two) {
             console.log("start");
-            console.log(monthData[1]);
+            console.log(monthlyData[0]);
             console.log("hello");
             console.log(data);
             //update 필요
-            data[0] = monthData[0].month_count;
-            data[1] = monthData[1].month_count;
-            data[2] = monthData[2].month_count;
-            data[3] = monthData[3].month_count;
-            data[4] = monthData[4].month_count;
-            data[5] = monthData[5].month_count;
+            data[0] = monthlyData[0].month_count;
+            data[1] = monthlyData[1].month_count;
+            data[2] = monthlyData[2].month_count;
+            data[3] = monthlyData[3].month_count;
+            data[4] = monthlyData[4].month_count;
+            data[5] = monthlyData[5].month_count;
             function returnCate(cate) {
                 var category = cate;
                 switch (category) {
