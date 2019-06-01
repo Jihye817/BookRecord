@@ -58,7 +58,7 @@ export default class Mystat extends React.Component{
             },
             body: JSON.stringify({user_name : this.state.name, year : this.state.value})
         }).then((responseData2) => {
-            return responseData2.text();
+            return responseData2.json();
         }).then((jsonData2) => {
             this.setState({monthData : jsonData2})
             console.log(this.state.monthData)
@@ -86,7 +86,7 @@ export default class Mystat extends React.Component{
         var cateCount = [0,0,0];
         if(this.state.pass_one && this.state.pass_two) {
             console.log("start");
-            console.log(monthlyData[0]);
+            console.log(monthlyData[4]);
             console.log("hello");
             console.log(data);
             //update 필요
@@ -96,6 +96,7 @@ export default class Mystat extends React.Component{
             data[3] = monthlyData[3].month_count;
             data[4] = monthlyData[4].month_count;
             data[5] = monthlyData[5].month_count;
+
             function returnCate(cate) {
                 var category = cate;
                 switch (category) {
