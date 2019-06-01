@@ -63,7 +63,6 @@ export default class Mystat extends React.Component{
             this.setState({monthData : jsonData2})
             console.log(this.state.monthData)
             console.log(this.state.monthData[2])
-        }).then((monthData) => {
             console.log("pass_two : 1");
             this.setState({ pass_two : 1 });
         }).done()
