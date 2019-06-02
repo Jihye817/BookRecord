@@ -10,7 +10,10 @@ class Mybooks extends React.Component{
         this.state = {
             value : '년도 ',
             value2: '분류',
-            value3: '상태'
+            value3: '상태',
+            countData : [],
+            pass_two : 0,
+            name : 'Ashely',
         }
     }
 
@@ -23,8 +26,58 @@ class Mybooks extends React.Component{
     onSelect3(value, label) { //상태 select를 위한 함수
         this.setState({value : value})
     }
+    componentDidMount() {
+        //읽은 책 수 fetch
+        fetch('http://220.149.242.12:10001/readBook/'+(this.state.name), {
+            method: 'GET'
+        }).then((responseData2) => {
+            return responseData2.json();
+        }).then((jsonData2) => {
+            console.log("start mybooks fetch");
+            this.setState({ countData: jsonData2})
+            this.setState({ pass_two : 1})
+            console.log(this.state.countData)
+        }).done();
+    }
+
+    componentDidUpdate(previousProps) { //탭이 바뀌면 새로고침
+        if (!previousProps.isFocused && this.props.isFocused) {
+            this.componentDidMount()
+        }
+    }
 
     render() {
+        var booklists = []; //읽은 책 list
+        var count_data = this.state.countData;
+
+        if(this.state.pass_two){
+            bookread = count_data[0].month_count;
+        }
+        else{
+            var bookread = 0;
+        }
+
+        for(let i=0; i<bookread; i++) //읽은 책 권 수 만큼 list에 출력
+        {
+            booklists.push(
+                <TouchableOpacity key={i} style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
+                        <View style = {styles.bookinfobox}>
+                            <View style = {styles.infodate}>
+                                <Text>3/22</Text>
+                            </View>
+                            
+                            <View style = {styles.infoimage}>
+                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                            </View>
+                            
+                            <View style = {styles.infotext}>
+                                <Text style = {styles.textitle}>{bookread}</Text>
+                                <Text style = {styles.textinfos}>김소연 | 아침달 시집 | 2018-09-10</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+            )
+        }
         return(
             <View style = {cstyle.whitecontainer}>
                 <View style = {cstyle.middlecontainer}/>
@@ -56,22 +109,7 @@ class Mybooks extends React.Component{
                     </View>
                 </View>
                 <View style = {styles.secondcontainer}>
-                    <TouchableOpacity style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
-                        <View style = {styles.bookinfobox}>
-                            <View style = {styles.infodate}>
-                                <Text>3/22</Text>
-                            </View>
-                            
-                            <View style = {styles.infoimage}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
-                            </View>
-                            
-                            <View style = {styles.infotext}>
-                                <Text style = {styles.textitle}>i에게</Text>
-                                <Text style = {styles.textinfos}>김소연 | 아침달 시집 | 2018-09-10</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
+                    {booklists}
                 </View>
             </View>
         );
