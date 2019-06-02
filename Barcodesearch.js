@@ -19,11 +19,27 @@ export default class Barcodesearch extends React.Component{
                 barcodeFinderVisible: true
             },
             isPopVisible: false,
+            isbn : null,
+            name : 'Ashely'
         };
+        this.book_name = null;
+        this.img_src = null;
+        this.author = null;
+        this.publisher = null;
+        this.public_date = null;
+        this.more_url = null;
+        this.read_rate = null;
+        this.read_date = null;
+        this.category = null;
+        this.best = null;
+        this.togglePopoff = this.togglePopoff.bind(this);
+        this.saveBook = this.saveBook.bind(this);
     }
 
     togglePop = () => {
-        this.setState({ isPopVisible : !this.state.isPopVisible});
+        //this.setState({ isPopVisible : !this.state.isPopVisible});
+        this.setState({ isPopVisible: true });
+
     }
 
     onBarCodeRead(scanResult) {
@@ -32,6 +48,7 @@ export default class Barcodesearch extends React.Component{
         if(scanResult.data != null) {
             if(!this.barcodeCodes.includes(scanResult.data)) {
                 this.barcodeCodes.push(scanResult.data);
+                this.setState({isbn : scanResult.data });
                 console.warn('onBarCodeRead call');
             }
         }
