@@ -155,11 +155,11 @@ export default class Peoplestat extends React.Component{
                 }
             }
             category[0] = returnCate(catedata[0].category);
-            cateCount[0] = catedata[0].ca_count;
+            cateCount[0] = catedata[0].count;
             category[1] = returnCate(catedata[1].category);
-            cateCount[1] = catedata[1].ca_count;
+            cateCount[1] = catedata[1].count;
             category[2] = returnCate(catedata[2].category);
-            cateCount[2] = catedata[2].ca_count;
+            cateCount[2] = catedata[2].count;
         }
         return (
             <View style = {cstyle.whitecontainer}>
