@@ -5,7 +5,7 @@ import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import LineChart from 'react-native-responsive-linechart';
 
-const data = [1, 5, 2, 3, 0, 6, 9, 5, 2, 3, 0, 6];
+var data = [0,0,0,0,0,0,0,0,0,0,0,0];
 const labels = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
 const config = {
     line: {
