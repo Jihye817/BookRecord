@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, Picker} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, FlatList} from 'react-native';
 import {Select, Option} from 'react-native-chooser';
 import cstyle from './Styles';
 import {withNavigationFocus} from 'react-navigation';
@@ -9,9 +9,9 @@ class Mybooks extends React.Component{
         super(props);
         this.state = {
             value : '년도 ',
-            value2: '분류',
-            value3: '상태',
+            value2: '전체',
             countData : [],
+            apiData : [],
             pass_two : 0,
             name : 'Ashely',
         }
@@ -21,9 +21,6 @@ class Mybooks extends React.Component{
         this.setState({value : value})
     }
     onSelect2(value, label) { //분류 select를 위한 함수
-        this.setState({value : value})
-    }
-    onSelect3(value, label) { //상태 select를 위한 함수
         this.setState({value : value})
     }
     componentDidMount() {
@@ -38,6 +35,17 @@ class Mybooks extends React.Component{
             this.setState({ pass_two : 1})
             console.log(this.state.countData)
         }).done();
+        // 읽은 책 제목들 fetch
+        fetch('http://220.149.242.12:10001/myreadBook/'+(this.state.name), {
+            method: 'GET'
+        }).then((responseData1) => {
+            return responseData1.json();
+        }).then((jsonData1) => {
+            console.log("start myreadBook fetch");
+            this.setState({ apiData: jsonData1})
+            this.setState({ pass_two : 1})
+            console.log(this.state.apiData)
+        }).done();
     }
 
     componentDidUpdate(previousProps) { //탭이 바뀌면 새로고침
@@ -48,10 +56,22 @@ class Mybooks extends React.Component{
 
     render() {
         var booklists = []; //읽은 책 list
-        var count_data = this.state.countData;
+        var count_data = this.state.apiData;
+
+        /*if (this.state.pass_one && this.state.pass_two) {
+            image = data[0].img_src;
+            //temp = data[0].img_src;
+            //image = "\'" + temp + "\'";
+            title = data[0].book_name;
+            author = data[0].author;
+            publisher = data[0].publisher;
+            pubdate = data[0].public_date;
+            real_pubdate = pubdate.substring(0,10);
+            link_url = data[0].more_url;
+        }*/
 
         if(this.state.pass_two){
-            bookread = count_data[0].month_count;
+            bookread = count_data.length;
         }
         else{
             var bookread = 0;
@@ -98,8 +118,31 @@ class Mybooks extends React.Component{
                             defaultText = {this.state.value2}
                             style = {styles.pickerstyle}
                             optionListStyle = {styles.pickeroptionstyle}>
-                            <Option value = "소설">소설</Option>
-                            <Option value = "수필">수필</Option>
+                            <Option value = "2">소설</Option>
+                            <Option value = "3">시/에세이</Option>
+                            <Option value = "4">경제/경영</Option>
+                            <Option value = "5">자기계발</Option>
+                            <Option value = "6">인문</Option>
+                            <Option value = "7">역사/문화</Option>
+                            <Option value = "8">국어/외국어</Option>
+                            <Option value = "9">가정/생활/요리</Option>
+                            <Option value = "10">청소년</Option>
+                            <Option value = "11">사회</Option>
+                            <Option value = "12">여행/지도</Option>
+                            <Option value = "13">과학/공학</Option>
+                            <Option value = "14">예술/대중문화</Option>
+                            <Option value = "15">컴퓨터/IT</Option>
+                            <Option value = "16">종교</Option>
+                            <Option value = "17">학습/참고서</Option>
+                            <Option value = "18">취업/수험서</Option>
+                            <Option value = "19">건강</Option>
+                            <Option value = "20">취미/레저</Option>
+                            <Option value = "21">사전</Option>
+                            <Option value = "22">만화</Option>
+                            <Option value = "23">잡지</Option>
+                            <Option value = "24">해외도서</Option>
+                            <Option value = "25">유아</Option>
+                            <Option value = "26">어린이</Option>
                         </Select>
                         </View>
 
