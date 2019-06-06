@@ -10,9 +10,8 @@ class Mybooks extends React.Component{
         this.state = {
             value : '년도 ',
             value2: '전체',
-            countData : [],
             apiData : [],
-            pass_two : 0,
+            pass_one : 0,
             name : 'Ashely',
         }
     }
@@ -24,18 +23,7 @@ class Mybooks extends React.Component{
         this.setState({value : value})
     }
     componentDidMount() {
-        //읽은 책 수 fetch
-        fetch('http://220.149.242.12:10001/readBook/'+(this.state.name), {
-            method: 'GET'
-        }).then((responseData2) => {
-            return responseData2.json();
-        }).then((jsonData2) => {
-            console.log("start mybooks fetch");
-            this.setState({ countData: jsonData2})
-            this.setState({ pass_two : 1})
-            console.log(this.state.countData)
-        }).done();
-        // 읽은 책 제목들 fetch
+        // 읽은 책 isbn fetch
         fetch('http://220.149.242.12:10001/myreadBook/'+(this.state.name), {
             method: 'GET'
         }).then((responseData1) => {
@@ -43,9 +31,10 @@ class Mybooks extends React.Component{
         }).then((jsonData1) => {
             console.log("start myreadBook fetch");
             this.setState({ apiData: jsonData1})
-            this.setState({ pass_two : 1})
+            this.setState({ pass_one : 1})
             console.log(this.state.apiData)
         }).done();
+        //isbn으로 책 정보 가져오기
     }
 
     componentDidUpdate(previousProps) { //탭이 바뀌면 새로고침
@@ -54,50 +43,28 @@ class Mybooks extends React.Component{
         }
     }
 
-    render() {
-        var booklists = []; //읽은 책 list
-        var count_data = this.state.apiData;
-
-        /*if (this.state.pass_one && this.state.pass_two) {
-            image = data[0].img_src;
-            //temp = data[0].img_src;
-            //image = "\'" + temp + "\'";
-            title = data[0].book_name;
-            author = data[0].author;
-            publisher = data[0].publisher;
-            pubdate = data[0].public_date;
-            real_pubdate = pubdate.substring(0,10);
-            link_url = data[0].more_url;
-        }*/
-
-        if(this.state.pass_two){
-            bookread = count_data.length;
-        }
-        else{
-            var bookread = 0;
-        }
-
-        for(let i=0; i<bookread; i++) //읽은 책 권 수 만큼 list에 출력
-        {
-            booklists.push(
-                <TouchableOpacity key={i} style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
+    renderItem = ({item}) =>{ //flatlist에 list만들기 위한 renderItem
+        return (
+            <TouchableOpacity style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
                         <View style = {styles.bookinfobox}>
                             <View style = {styles.infodate}>
-                                <Text>3/22</Text>
+                                <Text>{item.read_date.substring(5,7)} / {item.read_date.substring(8,10)}</Text>
                             </View>
                             
                             <View style = {styles.infoimage}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                                <Image style = {styles.image} source={{uri : item.img_src}}></Image>
                             </View>
                             
                             <View style = {styles.infotext}>
-                                <Text style = {styles.textitle}>{bookread}</Text>
-                                <Text style = {styles.textinfos}>김소연 | 아침달 시집 | 2018-09-10</Text>
+                                <Text  ellipsizeMode='tail' numberOfLines={1} style = {styles.textitle}>{item.book_name}</Text>
+                                <Text style = {styles.textinfos}>{item.author} | {item.publisher} | {item.public_date.substring(0,10)}</Text>
                             </View>
                         </View>
-                    </TouchableOpacity>
-            )
-        }
+            </TouchableOpacity>
+        )
+    }
+    render() {
+
         return(
             <View style = {cstyle.whitecontainer}>
                 <View style = {cstyle.middlecontainer}/>
@@ -152,7 +119,10 @@ class Mybooks extends React.Component{
                     </View>
                 </View>
                 <View style = {styles.secondcontainer}>
-                    {booklists}
+                    <View style = {{width:'90%'}}>
+                        <FlatList data={this.state.apiData} 
+                            renderItem={this.renderItem}/>
+                    </View>
                 </View>
             </View>
         );
@@ -223,8 +193,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     greybox2: {
+        alignItems: 'center',
         backgroundColor: '#F2F2F2',
-        width: '90%',
+        width: '100%',
+        flex:1,
     },
     bookinfobox: {
         height:110,
@@ -236,7 +208,7 @@ const styles = StyleSheet.create({
     infodate: {
         justifyContent: 'center',
         alignItems: 'center',
-        width:'14%',
+        width:'15%',
     },
     infoimage: {
         justifyContent: 'center',
@@ -244,14 +216,15 @@ const styles = StyleSheet.create({
         width:'20%',
     },
     image: {
-        width:'80%',
+        width:65,
+        height:90,
         resizeMode: 'contain',
         alignItems: 'center',
         justifyContent: 'center',
     },
     infotext: {
         justifyContent: 'center',
-        width:'66%',
+        width:'65%',
     },
     textitle: {
         paddingLeft: 10,
