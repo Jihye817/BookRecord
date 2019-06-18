@@ -39,7 +39,7 @@ export default class Barcodesearch extends React.Component {
     togglePop = () => {
         //this.setState({ isPopVisible : !this.state.isPopVisible});
         this.setState({ isPopVisible: true });
-        if (this.ISBN == null) {
+        if (this.state.isbn == null) {
             this.setState({ isPopVisible: false });
             alert("바코드를 다시 확인해주세요");
             //return 0;
@@ -94,13 +94,13 @@ export default class Barcodesearch extends React.Component {
     }
 
     onBarCodeRead(scanResult) {
-        console.warn(scanResult.type);
-        console.warn(scanResult.data);
+        //console.warn(scanResult.type);
+        //console.warn(scanResult.data);
         if (scanResult.data != null) {
             if (!this.barcodeCodes.includes(scanResult.data)) {
                 this.barcodeCodes.push(scanResult.data);
                 this.setState({ isbn: scanResult.data });
-                console.warn('onBarCodeRead call');
+                //console.warn('onBarCodeRead call');
             }
         }
         return;
@@ -187,7 +187,7 @@ export default class Barcodesearch extends React.Component {
                     <TouchableOpacity style={styles.greenbtn} onPress={this.togglePop} ><Text style={{ color: '#FFF', fontSize: 20 }}>스캔하기</Text></TouchableOpacity>
                 </View>
                 <Modal isVisible={this.state.isPopVisible}>
-
+                    {dataDisplay}
                 </Modal>
             </View>
         );

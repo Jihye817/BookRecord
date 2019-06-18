@@ -17,7 +17,7 @@ export default class Login extends React.Component{
                     <TouchableWithoutFeedback style = {styles.container} onPress={Keyboard.dismiss}>
                         <View style = {styles.container}>
                             <View style = {styles.logowrap}>
-                               <Text style = {styles.logo}>B PORT</Text>
+                               <Text style = {styles.logo}>다독다독</Text>
                                 <Text style = {styles.logotext}>your book report</Text>
                             </View>
                             <View style = {styles.infowrap}>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         flex: 3
     },
     logo: {
-        fontSize: 40,
+        fontSize: 45,
         color: '#FFFFFF',
         fontWeight: '500'
     },
