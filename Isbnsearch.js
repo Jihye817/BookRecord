@@ -103,9 +103,6 @@ export default class Isbnsearch extends React.Component {
         const data = this.state.apiData;
         const today = this.state.currentDate;
         var dataDisplay = null;
-        console.log(data);
-        console.log(data.items);
-        console.log("crazy isnit");
         if (data && data.items) {
             dataDisplay = data.items.map(item => {
                 //var image = "'" + item.image + "'";
