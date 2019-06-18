@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Picker } from 'react-native';
+import { Button, View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Picker,  } from 'react-native';
 import cstyle from './Styles';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { RNcamera, RNCamera } from 'react-native-camera';
