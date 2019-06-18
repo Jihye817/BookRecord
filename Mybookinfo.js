@@ -31,7 +31,7 @@ export default class Mybookinfo extends React.Component{
                                     <Text ellipsizeMode='tail' numberOfLines={1} style = {styles.textitle}>{title}</Text>
                                 </View>
                                 <Text style = {styles.textinfos}>{author} | {publisher} | {public_date}</Text>
-                                <TouchableOpacity style = {styles.more}><Text onPress={() => { Linking.openURL(link_url);}}>더보기 +</Text></TouchableOpacity>
+                                <TouchableOpacity style = {styles.more}><Text onPress={() => { Linking.openURL(link_url); }}>더보기 +</Text></TouchableOpacity>
                             </View>
                         </View>
                     </View>
