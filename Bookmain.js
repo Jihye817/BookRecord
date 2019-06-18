@@ -83,6 +83,8 @@ class Bookmain extends React.Component {
         // console.log(data[0]);
         if (this.state.pass_one && this.state.pass_two) {
             image = data[0].img_src;
+            //temp = data[0].img_src;
+            //image = "\'" + temp + "\'";
             title = data[0].book_name;
             author = data[0].author;
             publisher = data[0].publisher;

@@ -11,12 +11,21 @@ export default class Mainpage extends React.Component{
       active:true,
       pickerSelect: '연령',
       checked: false,
-      activeSwitch: 1 //성별체크
+      activeSwitch: 1, //성별체크,
+      duplicated : true,
     }
   }
   handleToggle(){ //여성/남성 체크 위한 것. 나중에 수정 가능성 있음
     const newState = !this.state.active;
     this.setState({active:newState});
+  }
+
+  duplicateID(){ //아이디 중복확인 위한 함수
+    if(this.state.duplicated){
+      return (<Text>사용불가능한아이디입니다</Text>)
+    }
+    else
+      return (<Text>사용가능한아이디입니다</Text>)
   }
 
     render() {
@@ -35,7 +44,7 @@ export default class Mainpage extends React.Component{
                   <Text style = {styles.rgtxt}>닉네임</Text>
                   <View style = {styles.inputwithbtn}>
                     <TextInput style = {styles.input}/>
-                    <TouchableOpacity style = {styles.greenbtn}>
+                    <TouchableOpacity style = {styles.greenbtn} duplicated = {this.state.duplicated} onPress={this.duplicateID}>
                       <Text style = {styles.greenbtntxt}>중복확인</Text>
                     </TouchableOpacity>
                   </View>

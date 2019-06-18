@@ -15,17 +15,17 @@ export default class Registerfin extends React.Component{
                         <View style = {styles.txtcontainer}>
                             <Text>Book Recording 회원가입 완료</Text>
                             <View style = {styles.intxt}>
-                                <Text style = {[{color: '#52C8BE'}]}>박밀레</Text><Text>님, 환영합니다.</Text>
+                                <Text style = {[{color: '#52C8BE'}]}>Ashely</Text><Text>님, 환영합니다.</Text>
                             </View>
                         </View>
                         <View style = {styles.infotable}>
                             <View style = {styles.tablerow}>
                                 <Text style = {styles.firsttxt}>닉네임</Text>
-                                <Text>박밀레</Text>
+                                <Text>Ashely</Text>
                             </View>
                             <View style = {styles.tablerow}>
                                 <Text style = {styles.firsttxt}>이메일</Text>
-                                <Text>book@naver.com</Text>
+                                <Text ellipsizeMode='tail' numberOfLines={1}>malesuada@vitaealiquetnec.co.uk</Text>
                             </View>
                             <View style = {styles.tablerow}>
                                 <Text style = {styles.firsttxt}>연령</Text>
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     },
     tablerow: {
         flexDirection: 'row',
+        width:240,
         paddingTop:5,
         paddingBottom:5,
         borderBottomWidth:1,
