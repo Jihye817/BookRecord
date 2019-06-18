@@ -187,7 +187,7 @@ export default class Barcodesearch extends React.Component {
                     <TouchableOpacity style={styles.greenbtn} onPress={this.togglePop} ><Text style={{ color: '#FFF', fontSize: 20 }}>스캔하기</Text></TouchableOpacity>
                 </View>
                 <Modal isVisible={this.state.isPopVisible}>
-
+                    {dataDisplay}
                 </Modal>
             </View>
         );
