@@ -23,21 +23,35 @@ class Mybooks extends React.Component{
         this.setState({value2 : value})
     }
     onChange(){
-        fetch('http://220.149.242.12:10001/myreadBookKind/', {
-            method: 'POST',
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({user_name : this.state.name, value: this.state.value2})
-        }).then((responseData1) => {
-            return responseData1.json();
-        }).then((jsonData1) => {
-            console.log("start myreadBook fetch");
-            this.setState({ apiData: jsonData1})
-            this.setState({ pass_one : 1})
-            console.log(this.state.apiData)
-        }).done();
+        if (value2 == 1) {
+            fetch('http://220.149.242.12:10001/myreadBook/'+(this.state.name), {
+                method: 'GET'
+            }).then((responseData1) => {
+                return responseData1.json();
+            }).then((jsonData1) => {
+                console.log("start myreadBook fetch");
+                this.setState({ apiData: jsonData1})
+                this.setState({ pass_one : 1})
+                console.log(this.state.apiData)
+            }).done();
+        }
+        else {
+            fetch('http://220.149.242.12:10001/myreadBookKind/', {
+                method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({user_name : this.state.name, value: this.state.value2})
+            }).then((responseData1) => {
+                return responseData1.json();
+            }).then((jsonData1) => {
+                console.log("start myreadBook fetch");
+                this.setState({ apiData: jsonData1})
+                this.setState({ pass_one : 1})
+                console.log(this.state.apiData)
+            }).done();
+        } 
     }
 
     componentDidMount() {
