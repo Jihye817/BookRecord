@@ -1,29 +1,37 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Picker} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Picker, Linking} from 'react-native';
 import cstyle from './Styles';
 
 export default class Mybookinfo extends React.Component{
     render(){
+        const read_date1 = this.props.navigation.getParam('read_date1', 'nothing sent')
+        const read_date2 = this.props.navigation.getParam('read_date2', 'nothing sent')
+        const image = this.props.navigation.getParam('image', 'nothing sent')
+        const title = this.props.navigation.getParam('title', 'nothing sent')
+        const author = this.props.navigation.getParam('author', 'nothing sent')
+        const publisher = this.props.navigation.getParam('publisher', 'nothing sent')
+        const public_date = this.props.navigation.getParam('public_date', 'nothing sent')
+        const link_url = this.props.navigation.getParam('link_url', 'nothing sent')
         return(
             <View style = {cstyle.whitecontainer}>
                 <View style = {styles.firstcontainer}>
                     <View style = {styles.greybox}>
-                        <Text style = {{fontSize:20}}>3 / 23</Text>
+                        <Text style = {{fontSize:20}}>{read_date1} / {read_date2}</Text>
                     </View>
                 </View>
                 <View style = {styles.secondcontainer}>
                     <View style = {styles.infobox}>
                         <View style = {styles.bookinfobox}>
                             <View style = {styles.infoimage}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
+                                <Image style = {styles.image} source={{uri : image}}></Image>
                             </View>
                             
                             <View style = {styles.infotext}>
                                 <View style = {styles.textone}>
-                                    <Text style = {styles.textitle}>i에게</Text>
+                                    <Text ellipsizeMode='tail' numberOfLines={1} style = {styles.textitle}>{title}</Text>
                                 </View>
-                                <Text style = {styles.textinfos}>김소연 | 아침달 시집 | 2018-09-10</Text>
-                                <TouchableOpacity style = {styles.more}><Text>더보기 +</Text></TouchableOpacity>
+                                <Text style = {styles.textinfos}>{author} | {publisher} | {public_date}</Text>
+                                <TouchableOpacity style = {styles.more}><Text onPress={() => { Linking.openURL(link_url);}}>더보기 +</Text></TouchableOpacity>
                             </View>
                         </View>
                     </View>
@@ -70,7 +78,8 @@ const styles = StyleSheet.create({
         width:'30%',
     },
     image: {
-        width:'80%',
+        width:115,
+        height:140,
         resizeMode: 'contain',
     },
     infotext: {

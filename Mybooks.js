@@ -45,7 +45,17 @@ class Mybooks extends React.Component{
 
     renderItem = ({item}) =>{ //flatlist에 list만들기 위한 renderItem
         return (
-            <TouchableOpacity style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen')}>
+            <TouchableOpacity style = {styles.greybox2} onPress = {() => this.props.navigation.navigate('MybookinfoScreen',
+                {
+                    read_date1 : item.read_date.substring(5,7),
+                    read_date2 : item.read_date.substring(8,10),
+                    image : item.img_src,
+                    title : item.book_name,
+                    author : item.author,
+                    publisher : item.publisher,
+                    public_date : item.public_date.substring(0,10),
+                    link_url : item.more_url 
+                })}>
                         <View style = {styles.bookinfobox}>
                             <View style = {styles.infodate}>
                                 <Text>{item.read_date.substring(5,7)} / {item.read_date.substring(8,10)}</Text>
