@@ -55,27 +55,27 @@ class Bookrecom extends React.Component{
                     <View style = {styles.greybox}>
                         <View style = {styles.boxline}>
                             <View style = {styles.recoms}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
-                                <Text style = {styles.booktitle}>i에게</Text>
-                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                                <Image style = {styles.image} source={require('./images/book1.jpg')}></Image>
+                                <Text style = {styles.booktitle}>서울, 1964년 겨울</Text>
+                                <Text style = {styles.bookinfo}>김승옥 | 맑은소리</Text>
                             </View>
                             <View style = {styles.recoms}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
-                                <Text style = {styles.booktitle}>i에게</Text>
-                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                                <Image style = {styles.image} source={require('./images/book2.jpg')}></Image>
+                                <Text style = {styles.booktitle}>종의 기원</Text>
+                                <Text style = {styles.bookinfo}>정유정 | 은행나무</Text>
                             </View>
                         </View>
                         
                         <View style = {styles.boxline}>
                             <View style = {styles.recoms}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
-                                <Text style = {styles.booktitle}>i에게</Text>
-                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                                <Image style = {styles.image} source={require('./images/book3.jpg')}></Image>
+                                <Text style = {styles.booktitle}>이방인</Text>
+                                <Text style = {styles.bookinfo}>알베르 카뮈 | 민음사</Text>
                             </View>
                             <View style = {styles.recoms}>
-                                <Image style = {styles.image} source={require('./images/for_i.jpg')}></Image>
-                                <Text style = {styles.booktitle}>i에게</Text>
-                                <Text style = {styles.bookinfo}>김소연 | 아침달 시집</Text>
+                                <Image style = {styles.image} source={require('./images/book4.jpg')}></Image>
+                                <Text style = {styles.booktitle}>코스모스</Text>
+                                <Text style = {styles.bookinfo}>칼 세이건 | 사이언스북스</Text>
                             </View>
                         </View>
                     </View>

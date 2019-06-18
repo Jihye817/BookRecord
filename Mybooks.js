@@ -21,25 +21,41 @@ class Mybooks extends React.Component{
     }
     onSelect2(value, label) { //분류 select를 위한 함수
         this.setState({value2 : value})
-    }
-    onChange(){
-        fetch('http://220.149.242.12:10001/myreadBookKind/', {
-            method: 'POST',
-            headers: {
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({user_name : this.state.name, value: this.state.value2})
-        }).then((responseData1) => {
-            return responseData1.json();
-        }).then((jsonData1) => {
-            console.log("start myreadBook fetch");
-            this.setState({ apiData: jsonData1})
-            this.setState({ pass_one : 1})
-            console.log(this.state.apiData)
-        }).done();
+        console.log("this is onselect2", this.state.value2)
     }
 
+    onChange(){
+        if (this.state.value2 == 1) {
+            fetch('http://220.149.242.12:10001/myreadBook/'+(this.state.name), {
+                method: 'GET'
+            }).then((responseData1) => {
+                return responseData1.json();
+            }).then((jsonData1) => {
+                console.log("start myreadBook fetch");
+                this.setState({ apiData: jsonData1})
+                this.setState({ pass_one : 1})
+                console.log(this.state.apiData)
+            }).done();
+        }
+        else {
+            fetch('http://220.149.242.12:10001/myreadBookKind/', {
+                method: 'POST',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({user_name : this.state.name, value: this.state.value2})
+            }).then((responseData1) => {
+                return responseData1.json();
+            }).then((jsonData1) => {
+                console.log("start myreadBook fetch");
+                this.setState({ apiData: jsonData1})
+                this.setState({ pass_one : 1})
+                console.log(this.state.apiData)
+            }).done();
+        } 
+    }
+    
     componentDidMount() {
         // 읽은 책 isbn fetch
             fetch('http://220.149.242.12:10001/myreadBook/'+(this.state.name), {
@@ -100,6 +116,7 @@ class Mybooks extends React.Component{
                     <View style = {styles.greybox}>
                         <View style = {styles.pickerstyle1}>
                         <Select onSelect = {this.onSelect.bind(this)}
+                            selected = {this.state.value}
                             defaultText = {this.state.value}
                             style = {styles.pickerstyle}
                             optionListStyle = {styles.pickeroptionstyle}>
@@ -109,7 +126,8 @@ class Mybooks extends React.Component{
                         </View>
 
                         <View style = {styles.pickerstyle1}>
-                        <Select onSelect2 = {this.onSelect2.bind(this)}
+                        <Select onSelect = {this.onSelect2.bind(this)}
+                            selected = {this.state.value}
                             defaultText = {this.state.value2}
                             style = {styles.pickerstyle}
                             optionListStyle = {styles.pickeroptionstyle}>

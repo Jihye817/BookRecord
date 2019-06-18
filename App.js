@@ -60,11 +60,11 @@ const CustomDrawerComponent = (props) => (
     <ImageBackground source={require('./images/drawerback.png')} style={{height:130, resizeMode: 'contain',}}>
       <View style = {{flexDirection: 'row', paddingTop: 40, paddingLeft:30, alignItems:'center'}}>
         <IonIcon name = "md-book" size={28} color='#FFF'/>
-        <Text style = {{paddingLeft: 20, fontSize: 20, color:'#FFF'}}>박밀레</Text>
+        <Text style = {{paddingLeft: 20, fontSize: 20, color:'#FFF'}}>Ashely</Text>
       </View>
       <View style = {{flexDirection: 'row', paddingTop: 15, paddingLeft: 78,}}>
         <Text style = {{color:'#FFF', fontSize:16,}}>총 독서기록</Text>
-        <Text style = {{color:'#FFD966', fontSize:16,}}>13</Text>
+        <Text style = {{color:'#FFD966', fontSize:16,}}>24</Text>
         <Text style = {{color:'#FFF', fontSize:16,}}>권</Text>
       </View>
     </ImageBackground>
